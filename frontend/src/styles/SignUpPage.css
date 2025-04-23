@@ -1,0 +1,295 @@
+.user-type-radio .form-check-label:hover,
+.user-type-radio .form-check-input:hover {
+  cursor: pointer;
+}
+
+.user-type-radio .form-check-label {
+  width: 100%;
+  display: flex;
+  align-items: center;
+}
+
+.signup-btn.navbar-btn {
+  min-width: 200px;
+  font-weight: 500;
+  padding: 10px 30px; /* Väčší padding pre výraznejšie tlačidlo */
+}
+
+/* Login button styling to match signup-btn but with distinctive appearance */
+.login-btn.navbar-btn {
+  min-width: 200px;
+  font-weight: 500;
+  padding: 10px 30px;
+}
+
+/* Dark mode button styles - matching MyNavbar dark theme */
+body.dark .signup-btn.navbar-btn {
+  background-color: #167cd5;
+  color: white;
+}
+
+body.dark .signup-btn.navbar-btn:hover {
+    background-color: #1352aa;
+    color: white;
+  transform: scale(1.02);
+}
+
+/* Dark mode login button */
+body.dark .login-btn.navbar-btn {
+  background-color: #0d6efd;
+  color: white;
+}
+
+body.dark .login-btn.navbar-btn:hover {
+  background-color: #0b5ed7;
+  color: white;
+  transform: scale(1.02);
+}
+
+/* Light mode button styles - matching MyNavbar light theme */
+body.light .signup-btn.navbar-btn {
+  background-color: #198bfc;
+  color: #e9edf4
+}
+
+body.light .signup-btn.navbar-btn:hover {
+    background-color: #1078e0;
+    color: #f2f7f8;
+    transform: scale(1.02);
+}
+
+/* Light mode login button */
+body.light .login-btn.navbar-btn {
+  background-color: #0d6efd;
+  color: #e9edf4;
+}
+
+body.light .login-btn.navbar-btn:hover {
+  background-color: #0b5ed7;
+  color: #f2f7f8;
+  transform: scale(1.02);
+}
+
+.signup-btn.navbar-btn:active {
+  transform: scale(0.96);
+}
+
+/* Form styling for dark/light modes */
+body.dark .dark-mode-input {
+  background-color: #e0e3ea;
+  border-color: #5a6b8a;
+  color: #dce1f0;
+}
+
+body.dark .dark-mode-input:focus {
+  box-shadow: 0 0 0 0.1rem rgba(34, 143, 232, 0.926);
+}
+
+body.dark .dark-mode-input::placeholder {
+  color: #c1c7d3ee;
+}
+
+/* Disabled inputs v dark mode - vyraznejsi kontrast */
+body.dark .dark-mode-input:disabled {
+  background-color: #8c929c !important;
+  border-color: #384458;
+  color: #4a4a4a;
+}
+
+/* Disabled inputs styling */
+.dark-mode-input:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  filter: grayscale(30%);
+}
+
+/* Light mode specific disabled inputs */
+body.light .dark-mode-input:disabled {
+  background-color: #e9ecef !important;
+  border-color: #ced4da;
+  color: #6c757d;
+}
+
+/* Disabled input placeholder */
+.dark-mode-input:disabled::placeholder {
+  color: #6c757d;
+}
+
+/* Radio buttons v dark mode - svetlejsie */
+body.dark .form-check-input {
+  background-color: #dadee7;
+  border-color: #5a6b8a;
+}
+
+body.dark .form-check-input:hover {
+  background-color: #cbd5e0;
+}
+
+body.dark .form-check-input:checked {
+  background-color: #3b82f6;
+  border-color: #3b82f6;
+}
+
+/* Autofill styling */
+body.dark .dark-mode-input:-webkit-autofill {
+  background-color: #dadee7 !important;
+  color: #000000 !important;
+  -webkit-box-shadow: 0 0 0px 1000px #dadee7 inset;
+  box-shadow: 0 0 0px 1000px #dadee7 inset;
+}
+
+body.dark .dark-mode-input:-webkit-autofill::first-line {
+  color: #000000 !important;
+}
+
+/* Form container styling */
+.signup-form-container {
+  background-color: rgba(255, 255, 255, 0.02);
+  border-radius: 15px;
+  padding: 25px;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+}
+
+body.dark .signup-form-container {
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: linear-gradient(145deg, rgba(18, 33, 62, 0.5), rgba(22, 41, 77, 0.5));
+  box-shadow: 0 5px 25px 0 rgba(56, 113, 171, 0.37);
+  backdrop-filter: blur(4px);
+}
+
+body.light .signup-form-container {
+  background: linear-gradient(145deg, rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0.95));
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.15);
+}
+
+/* Form heading enhancement */
+body.dark .signup-form-container h2 {
+  color: #ffffff;
+  text-shadow: 0 0 10px rgba(255, 255, 255, 0.1);
+}
+
+body.light .signup-form-container h2 {
+  color: #03045e;
+  text-shadow: 0 0 10px rgba(3, 4, 94, 0.1);
+}
+
+/* Toast Styling */
+.notification-toast {
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+  border-radius: 15px !important;
+  z-index: 9999;
+  backdrop-filter: blur(25px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  min-width: 300px;
+}
+
+.notification-toast .toast-header {
+  background-color: transparent;
+  border-bottom: none;
+  padding: 1rem 1rem 0.5rem;
+  color: white;
+}
+
+.notification-toast .toast-body {
+  padding: 0.5rem 1rem 1rem;
+  color: white;
+}
+
+.notification-toast .btn-link {
+  color: rgba(255, 255, 255, 0.8);
+  text-decoration: none;
+}
+
+.notification-toast .btn-link:hover {
+  color: white;
+}
+
+/* Success toast */
+.notification-toast.bg-success {
+  background: linear-gradient(115deg, #1e9345, #0f8232) !important;
+}
+
+/* Error toast - tmavší odtieň červenej */
+.notification-toast.bg-danger {
+  background: linear-gradient(115deg, #b92626, #9e0b0b) !important;
+  box-shadow: 0 4px 15px rgba(198, 40, 40, 0.3);
+}
+
+/* Close button */
+.notification-toast .btn-close {
+  filter: invert(1) grayscale(100%) brightness(200%);
+}
+
+/* Updated Validation Feedback Styles */
+.validation-feedback {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-top: 0.25rem;
+  font-size: 0.875rem;
+  min-height: 20px; /* Fixed height to prevent layout shift */
+  opacity: 0;
+  transition: opacity 0.2s ease-in-out;
+}
+
+.validation-feedback.show {
+  opacity: 1;
+}
+
+/* Add these styles to maintain consistent spacing */
+.validation-feedback.hidden {
+  visibility: hidden;
+  opacity: 0;
+  height: 20px; /* Match the height of visible feedback */
+  margin-top: 0.25rem; /* Match the margin of visible feedback */
+}
+
+/* Input validation states */
+.dark-mode-input.is-valid,
+.dark-mode-input.is-invalid {
+  transition: all 0.2s ease-in-out;
+}
+
+.dark-mode-input:not(.touched) {
+  border-color: #ced4da !important;
+  background-color: initial !important;
+}
+
+.validation-icon {
+  font-size: 1rem;
+}
+
+.validation-icon.valid {
+  color: #198754;
+}
+
+.validation-icon.invalid {
+  color: #dc3545;
+}
+
+.validation-feedback.valid small {
+  color: #198754;
+}
+
+.validation-feedback.invalid small {
+  color: #dc3545;
+}
+
+.dark-mode-input.is-valid {
+  border-color: #198754 !important;
+  background-color: rgba(25, 135, 84, 0.05) !important;
+}
+
+.dark-mode-input.is-invalid {
+  border-color: #dc3545 !important;
+  background-color: rgba(220, 53, 69, 0.05) !important;
+}
+
+body.dark .dark-mode-input.is-valid {
+  background-color: rgba(25, 135, 84, 0.1) !important;
+}
+
+body.dark .dark-mode-input.is-invalid {
+  background-color: rgba(220, 53, 69, 0.1) !important;
+}

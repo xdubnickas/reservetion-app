@@ -1,0 +1,38 @@
+.event-image-placeholder {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  color: white;
+  text-align: center;
+  overflow: hidden;
+}
+
+.image-placeholder-text {
+  font-size: 3rem;
+  font-weight: bold;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  letter-spacing: 1px;
+}
+
+.placeholder-icon {
+  font-size: 4rem;
+  opacity: 0.8;
+}
+
+/* Responsive adjustments */
+@media (max-width: 576px) {
+  .image-placeholder-text {
+    font-size: 2rem;
+  }
+  
+  .placeholder-icon {
+    font-size: 3rem;
+  }
+}
+
+/* Dark mode adjustments */
+body.dark .event-image-placeholder {
+  box-shadow: inset 0 0 20px rgba(0, 0, 0, 0.2);
+}

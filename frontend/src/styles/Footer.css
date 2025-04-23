@@ -1,0 +1,74 @@
+/* Footer styles */
+.footer {
+    background-color: #f8f9fa;
+    padding: 40px 0;
+    margin-top: 30px;
+    transition: background-color 0.5s ease, color 0.4s ease;
+  }
+  
+  /* Svetlý režim */
+  body.light .footer {
+    background-color: #ffffff;
+    color: #03045e;
+  }
+  
+  /* Tmavý režim */
+  body.dark .footer {
+    background-color: #212529;
+    color: #f8f9fa;
+  }
+  
+  .footer h5 {
+    font-size: 1.2rem;
+    font-weight: bold;
+    margin-bottom: 20px;
+    transition: color 0.3s ease;
+  }
+  
+  .footer p {
+    font-size: 0.9rem;
+    color: #6c757d;
+    transition: color 0.3s ease;
+  }
+  
+  /* Pre tmavý režim zmeníme farbu textu */
+  body.dark .footer p {
+    color: #f8f9fa;
+  }
+  
+  .footer a {
+    color: #007bff;
+    text-decoration: none;
+    transition: color 0.3s ease;
+  }
+  
+  /* Pre tmavý režim zmeníme farbu odkazov */
+  body.dark .footer a {
+    color: #2d9dff;
+  }
+  
+  .footer a:hover {
+    text-decoration: underline;
+    color: #2386dd; 
+  }
+  
+  /* Pre tmavý režim zmeníme farbu pri hover */
+  body.dark .footer a:hover {
+    color: #62b8e6;
+  }
+  
+  /* Prispôsobenie pre malé obrazovky */
+  @media (max-width: 767px) {
+    .footer {
+      padding: 20px 0;
+    }
+  
+    .footer h5 {
+      font-size: 1rem;
+    }
+  
+    .footer p {
+      font-size: 0.8rem;
+    }
+  }
+  

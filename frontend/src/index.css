@@ -1,0 +1,16 @@
+body {
+    font-family: "Anek Devanagari-SemiBold", Helvetica;
+    color: #f7faf8;
+    background-color: #132342;
+    transition: background-color 0.5s ease, color 0.5s ease;
+  }
+
+body.light {
+  color: #010b27;
+  background-color: #edf6fff3;
+}
+
+body.dark {
+  color: #f7fafa;
+  background-color: #132342;
+}

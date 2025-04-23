@@ -1,0 +1,988 @@
+/* Base card styles */
+.event-card {
+    background-color: var(--bs-body-bg);
+    color: var(--bs-body-color);
+    border-left: 4px solid transparent;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+    transform: translateY(0);
+    transition: all 0.3s ease-in-out;
+    border-radius: 30px;
+}
+
+/* Add hover effect that's NOT scaling */
+.event-card:hover {
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    border-color: currentColor;
+    filter: brightness(1.02);
+    transform: translateY(-2px);
+}
+
+.event-card.status-active {
+    border-left-color: #28a745;
+}
+
+.event-card.status-active:hover {
+    box-shadow: 0 5px 15px rgba(40, 167, 69, 0.15);
+    border-color: #28a745;
+}
+
+.event-card.status-full {
+    border-left-color: #ffc107;
+}
+
+.event-card.status-full:hover {
+    box-shadow: 0 5px 15px rgba(255, 193, 7, 0.15);
+    border-color: #ffc107;
+}
+
+.event-card.status-inactive {
+    border-left-color: #6c757d;
+}
+
+.event-card.status-inactive:hover {
+    box-shadow: 0 5px 15px rgba(108, 117, 125, 0.15);
+    border-color: #6c757d;
+}
+
+.event-card .card-title {
+    color: var(--bs-body-color);
+    font-size: 1.1rem;
+    font-weight: 500;
+    margin-bottom: 1rem;
+}
+
+.event-card .card-text {
+    color: var(--bs-body-color);
+}
+
+/* Reservation status background colors */
+.event-card.bg-confirmed {
+    background-color: rgba(40, 167, 69, 0.05);
+}
+
+.event-card.bg-pending {
+    background-color: rgba(255, 193, 7, 0.05);
+}
+
+.event-card.bg-cancelled {
+    background-color: rgba(108, 117, 125, 0.05);
+}
+
+.reservation-date {
+    display: flex;
+    align-items: center;
+    color: #6c757d;
+    font-size: 0.85rem;
+    padding-top: 5px;
+    border-top: 1px solid rgba(0,0,0,0.1);
+}
+
+/* Event card header with status */
+.event-card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 15px;
+}
+
+.event-status {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    padding: 5px 10px;
+    border-radius: 20px;
+    font-size: 0.85rem;
+    font-weight: 500;
+}
+
+.status-icon {
+    font-size: 1.1rem;
+}
+
+.status-icon.active {
+    color: #28a745;
+}
+
+.status-icon.full {
+    color: #ffc107;
+}
+
+.status-icon.inactive {
+    color: #6c757d;
+}
+
+.status-text {
+    position: relative;
+    top: 1px;
+}
+
+/* Add this to your existing CSS */
+.status-event-inactive {
+  background-color: #f5f5f5;
+  color: #777;
+  border-color: #ddd;
+  opacity: 0.8;
+}
+
+/* Common modal styles */
+.event-modal .modal-content {
+    background-color: var(--bs-body-bg);
+    color: var(--bs-body-color);
+    margin: 0 auto;
+    width: 98%;
+    padding: 1.5rem;
+}
+
+.event-modal .modal-header {
+    border-bottom-color: var(--bs-border-color);
+}
+
+.event-modal .modal-header .btn-close {
+    filter: var(--bs-btn-close-white);
+}
+
+.event-modal .form-label {
+    color: var(--bs-body-color);
+    margin-bottom: 0.5rem;
+}
+
+/* .event-modal .description-field {
+    height: 158px;
+} */
+
+/* Utility classes */
+.cursor-pointer {
+    cursor: pointer;
+}
+
+/* Locality section styles */
+.locality-section {
+    background-color: var(--bs-gray-100);
+    border-radius: 8px;
+    padding: 2rem;
+    margin: 2rem 0 1rem;
+    border: 1px solid var(--bs-gray-200);
+    min-height: 220px;
+}
+
+.locality-section .form-group {
+    margin-bottom: 1rem;
+    transition: all 0.3s ease;
+}
+
+.locality-section select.form-select {
+    background-color: var(--bs-white);
+    padding: 0.5rem 2rem 0.5rem 0.75rem;
+    height: auto;
+    min-height: 38px;
+    white-space: normal;
+    word-wrap: break-word;
+    background-position: right 0.5rem center;
+    text-overflow: ellipsis;
+}
+
+.locality-section .form-select option {
+    padding: 8px;
+    white-space: normal;
+    min-height: 2em;
+    display: flex;
+    align-items: center;
+}
+
+.locality-section .invalid-feedback {
+    display: block;
+    margin-top: 0.5rem;
+    font-size: 0.875rem;
+}
+
+.locality-container {
+    display: grid;
+    grid-template-columns: 1.5fr 1fr;
+    gap: 2rem;
+    height: 100%;
+}
+
+.locality-selects {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.locality-field {
+    min-height: 70px;
+    opacity: 1;
+    transition: opacity 0.3s ease;
+}
+
+.locality-field.hidden {
+    opacity: 0;
+    pointer-events: none;
+}
+
+.locality-details {
+    background-color: var(--bs-white);
+    border: 1px solid var(--bs-gray-300);
+    border-radius: 6px;
+    padding: 1rem;
+    border-left: 4px solid var(--bs-primary);
+    height: 100%;
+    min-height: 180px;
+    overflow-y: auto;
+}
+
+.locality-details:not(:empty) {
+    border-left: 4px solid var(--bs-primary);
+}
+
+.locality-details p {
+    font-size: 0.9rem;
+    color: var(--bs-gray-700);
+    margin-bottom: 0.5rem;
+}
+
+.locality-details h6 {
+    color: var(--bs-primary);
+    margin-bottom: 0.75rem;
+    font-weight: 600;
+}
+
+.placeholder-text {
+    color: var(--bs-gray-500);
+    font-style: italic;
+    /* min-height: 90px; */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--bs-white);
+    border: 1px dashed var(--bs-gray-300);
+    border-radius: 6px;
+    padding: 1rem;
+    height: 100%;
+    min-height: 180px;
+}
+
+/* Image upload styles */
+.image-upload-container {
+    width: 100%;
+}
+
+.image-upload-area {
+    border: 2px dashed var(--bs-gray-400);
+    border-radius: 8px;
+    padding: 1rem;
+    min-height: 200px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    background-color: var(--bs-gray-100);
+}
+
+.image-upload-area:hover {
+    border-color: var(--bs-primary);
+    background-color: var(--bs-gray-200);
+}
+
+.image-upload-area.has-image {
+    padding: 0;
+    border-style: solid;
+    background-color: var(--bs-white);
+}
+
+.upload-placeholder {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+    color: var(--bs-gray-600);
+}
+
+.upload-placeholder i {
+    font-size: 2.5rem;
+}
+
+.upload-placeholder span {
+    font-size: 1.1rem;
+}
+
+.image-preview-wrapper {
+    position: relative;
+    width: 100%;
+    height: 200px;
+}
+
+.image-preview {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 6px;
+}
+
+.image-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    color: white;
+    border-radius: 6px;
+}
+
+.image-preview-wrapper:hover .image-overlay {
+    opacity: 1;
+}
+
+.selected-file-name {
+    margin-top: 0.5rem;
+    font-size: 0.875rem;
+    color: var(--bs-gray-600);
+    text-align: center;
+}
+
+.file-size {
+    margin-left: 0.5rem;
+    color: var(--bs-gray-500);
+}
+
+.text-muted {
+    color: var(--bs-gray-600) !important;
+    font-size: 0.875rem;
+}
+
+.form-select option.text-danger {
+    color: var(--bs-danger);
+    font-weight: 500;
+}
+
+.form-select option.text-danger::after {
+    content: " ⚠️";
+}
+
+.room-select {
+    min-height: 120px;
+    background-color: var(--bs-white);
+}
+
+.room-select option {
+    padding: 8px;
+    margin-bottom: 2px;
+    border-radius: 4px;
+}
+
+.room-select option:checked {
+    background-color: var(--bs-primary) linear-gradient(0deg, var(--bs-primary) 0%, var(--bs-primary) 100%);
+    color: white;
+}
+
+.rooms-checkbox-container {
+    background-color: var(--bs-white);
+    border: 1px solid var(--bs-gray-300);
+    border-radius: 6px;
+    padding: 0.5rem 0.5rem 0.5rem 2rem;  /* Zväčšený ľavý padding */
+    max-height: 200px;
+    overflow-y: auto;
+}
+
+.room-checkbox {
+    padding: 0.5rem;
+    margin: 0.5rem 0 0.5rem 0.5rem;  /* Pridaný ľavý margin */
+    border-bottom: 1px solid var(--bs-gray-200);
+}
+
+.room-checkbox:last-child {
+    border-bottom: none;
+    margin-bottom: 0;
+}
+
+.room-checkbox:hover {
+    background-color: var(--bs-gray-100);
+    border-radius: 4px;
+}
+
+.room-checkbox .form-check-input:checked + .form-check-label {
+    font-weight: 500;
+    color: var(--bs-primary);
+}
+
+.form-step-indicator {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 2rem;
+}
+
+.step {
+    padding: 0.5rem 1rem;
+    margin: 0 1rem;
+    border-radius: 4px;
+    background-color: var(--bs-gray-200);
+}
+
+.step.active {
+    background-color: var(--bs-primary);
+    color: white;
+}
+
+/* Status filter styling */
+.status-filter-container {
+    margin-top: 20px;
+}
+
+.status-filter {
+    background-color: #f8f9fa;
+    border-radius: 8px;
+    padding: 15px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.filter-header {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-weight: 600;
+    margin-bottom: 12px;
+    padding-bottom: 8px;
+    border-bottom: 1px solid #dee2e6;
+}
+
+.filter-icon {
+    font-size: 1.2rem;
+}
+
+.filter-options {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.filter-option {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    padding: 8px 12px;
+    border-radius: 20px;
+    background-color: white;
+    border: 1px solid #dee2e6;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.filter-option:hover {
+    background-color: #f0f0f0;
+}
+
+.filter-option.active {
+    background-color: #e7f5ff;
+    border-color: #007bff;
+    color: #007bff;
+    font-weight: 500;
+}
+
+/* Statistics section styling */
+.event-statistics {
+    background-color: #f8f9fa;
+    border-radius: 8px;
+    padding: 12px;
+    margin-top: 15px;
+    border-left: 3px solid #6c757d;
+}
+
+.statistics-title {
+    font-size: 14px;
+    margin-bottom: 10px;
+    color: #495057;
+    font-weight: 600;
+}
+
+.statistics-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+}
+
+.statistic-item {
+    display: flex;
+    align-items: center;
+}
+
+.statistic-icon {
+    font-size: 20px;
+    margin-right: 10px;
+    color: #6c757d;
+}
+
+.statistic-content {
+    display: flex;
+    flex-direction: column;
+}
+
+.statistic-value {
+    font-weight: 600;
+    font-size: 16px;
+}
+
+.statistic-label {
+    font-size: 12px;
+    color: #6c757d;
+}
+
+.trend-up {
+    color: #28a745;
+}
+
+.trend-down {
+    color: #dc3545;
+}
+
+.trend-neutral {
+    color: #fd7e14;
+}
+
+/* Statistics Modal Styling */
+.stats-btn {
+    color: #007bff !important;
+    text-decoration: none;
+    padding: 0.25rem 0.5rem;
+    font-size: 0.875rem;
+}
+
+.stats-btn:hover {
+    text-decoration: underline;
+    background-color: rgba(0, 123, 255, 0.1);
+    border-radius: 0.25rem;
+}
+
+.statistics-chart-container {
+    height: 300px;
+    padding: 1rem;
+    background-color: #f8f9fa;
+    border-radius: 0.5rem;
+}
+
+.stats-summary-item {
+    text-align: center;
+    padding: 1rem;
+    background-color: #f8f9fa;
+    border-radius: 0.5rem;
+    height: 100%;
+}
+
+.stats-summary-item h5 {
+    color: #6c757d;
+    font-size: 1rem;
+    margin-bottom: 0.5rem;
+}
+
+.stats-value {
+    font-size: 2rem;
+    font-weight: 700;
+    color: #212529;
+}
+
+.recent-reservations {
+    max-height: 300px;
+    overflow-y: auto;
+    border: 1px solid #dee2e6;
+    border-radius: 0.5rem;
+}
+
+/* Rating styles */
+.star-rating {
+  display: inline-flex;
+  align-items: center;
+}
+
+.rating-star {
+  color: #e0e0e0;
+  font-size: 1rem;
+  margin-right: 2px;
+}
+
+.rating-star.filled {
+  color: #ffc107;
+}
+
+.rating-star.half-filled {
+  color: #ffc107;
+}
+
+.event-rating {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 8px;
+  padding: 4px 0;
+  background-color: rgba(0, 0, 0, 0.03);
+  border-radius: 4px;
+}
+
+.rating-label {
+  margin-right: 8px;
+  font-weight: 500;
+}
+
+.rating-value {
+  font-weight: 500;
+  color: #555;
+}
+
+.organizer-rating {
+  display: flex;
+  align-items: center;
+  margin-top: 5px;
+}
+
+.organizer-rating-label {
+  font-weight: 500;
+  margin-right: 8px;
+}
+
+.big-rating .rating-star {
+  font-size: 1.5rem;
+  margin-right: 4px;
+}
+
+.big-rating .rating-value {
+  font-size: 1.25rem;
+}
+
+.organizer-stats-card {
+  background-color: #f8f9fa;
+  border-radius: 8px;
+  padding: 20px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+.stat-item {
+  text-align: center;
+  padding: 10px;
+}
+
+.stat-item h5 {
+  margin-bottom: 10px;
+  color: #555;
+}
+
+.stat-value {
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: #0d6efd;
+}
+
+.rating-details {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 15px;
+}
+
+/* Rating component styles */
+.evt-rating-component {
+  background-color: #f9f9f9;
+  padding: 10px;
+  border-radius: 8px;
+  margin-top: 10px;
+  border-left: 3px solid #ffc107;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+}
+
+.evt-rating-component h6 {
+  font-size: 0.9rem;
+  white-space: nowrap;
+}
+
+.evt-rating-component .star-container {
+  display: flex;
+  align-items: center;
+}
+
+.evt-rating-component .rating-value {
+  font-weight: 500;
+  color: #555;
+  font-size: 0.85rem;
+}
+
+@media (max-width: 767.98px) {
+  .evt-rating-component .row > div:last-child {
+    margin-top: 10px;
+  }
+}
+
+/* Add these styles to your existing EventList.css file */
+
+.sort-controls {
+  padding: 10px 15px;
+  background-color: #f8f9fa;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+.sort-options {
+  margin-top: 8px;
+  display: flex;
+  align-items: center;
+}
+
+.sort-btn {
+  min-width: 80px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Add these styles to match the sort controls with the status filter style */
+
+.sort-controls {
+  padding: 10px 15px;
+  background-color: #f8f9fa;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+  height: 100%;
+}
+
+.sort-controls .filter-header {
+  display: flex;
+  align-items: center;
+  margin-bottom: 8px;
+  font-weight: 500;
+  color: #495057;
+}
+
+.sort-controls .filter-icon {
+  margin-right: 8px;
+  color: #6c757d;
+}
+
+.sort-controls .filter-options {
+  display: flex;
+  gap: 8px;
+}
+
+/* Remove the button styles if they're already defined for .sort-btn elsewhere */
+
+/* Buttons for both EventList and LocalityList */
+.create-event-btn, .create-locality-btn {
+  display: flex;
+  align-items: center;
+  padding: 0.6rem 1.5rem;
+  font-weight: 500;
+  border-radius: 25px;
+  transition: all 0.2s ease;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  background-color: #0d6efd;
+  border: none;
+}
+
+.create-event-btn:hover, .create-locality-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  background-color: #0b5ed7;
+}
+
+.create-event-btn i, .create-locality-btn i {
+  font-size: 1.1rem;
+  margin-right: 8px;
+}
+
+
+/* Bottom add buttons */
+.add-event-bottom {
+  text-align: center;
+  padding: 25px 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.add-event-btn {
+  width: 55px;
+  height: 55px;
+  border-radius: 50%;
+  background-color: #0d6efd;
+  color: white;
+  font-size: 22px;
+  border: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.2s, background-color 0.2s;
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.2);
+}
+
+.add-event-btn:hover {
+  transform: scale(1.08);
+  background-color: #0b5ed7;
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.3);
+}
+
+.add-event-btn:active {
+  transform: scale(0.95);
+}
+
+/* Bottom add button */
+.add-event-bottom-btn {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  background-color: #0d6efd;
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  border: none;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  margin: 0 auto;
+}
+
+.add-event-bottom-btn i {
+  font-size: 28px;
+}
+
+.add-event-bottom-btn:hover {
+  background-color: #0b5ed7;
+  transform: scale(1.05);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+}
+
+.add-event-bottom-btn:active {
+  transform: scale(0.95);
+}
+
+/* Add event button styling (matching locality button) */
+.add-event-bottom {
+  text-align: center;
+  padding: 20px 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.add-event-btn {
+  width: 55px;
+  height: 55px;
+  border-radius: 50%;
+  background-color: #0d6efd;
+  color: white;
+  font-size: 20px;
+  border: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.2s, background-color 0.2s;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+.add-event-btn:hover {
+  transform: scale(1.05);
+  background-color: #0b5ed7;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+.add-event-btn:active {
+  transform: scale(0.95);
+}
+
+/* Add these styles to the end of your existing CSS file */
+
+.rating-count {
+  font-size: 0.8rem;
+  color: #666;
+  margin-left: 5px;
+}
+
+.rating-distribution {
+  width: 100%;
+}
+
+.distribution-row {
+  display: flex;
+  align-items: center;
+  margin-bottom: 8px;
+}
+
+.stars-label {
+  width: 65px;
+  font-size: 0.9rem;
+  text-align: right;
+  padding-right: 10px;
+}
+
+.progress-container {
+  flex-grow: 1;
+  height: 16px;
+  background-color: #f0f0f0;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.progress-bar {
+  height: 100%;
+  background-color: #ffc107;
+  border-radius: 8px;
+  min-width: 3px;
+}
+
+.count-label {
+  width: 30px;
+  text-align: right;
+  font-size: 0.9rem;
+  padding-left: 8px;
+}
+
+.big-rating .star-rating {
+  justify-content: center;
+}
+
+.big-rating .rating-star {
+  font-size: 1.5rem;
+}
+
+.big-rating .rating-value {
+  font-size: 1.2rem;
+}
+
+/* Add these styles to override the inactive event styling for the rating component */
+.status-event-inactive .rating-area {
+  opacity: 1 !important;
+}
+
+.status-event-inactive .evt-rating-component {
+  opacity: 1 !important;
+}
+
+/* Make sure all children of the rating component stay visible */
+.status-event-inactive .evt-rating-component * {
+  opacity: 1 !important;
+}
+
+/* Add some visual separation */
+.rating-area {
+  border-top: 1px solid #eee;
+  padding-top: 10px;
+}
+
+/* Rating container style - outside the inactive card */
+.rating-container {
+  background-color: white;
+  border-radius: 8px;
+  padding: 0;
+  border: 1px solid #eee;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+  opacity: 1 !important;
+}
+
+.rating-container .evt-rating-component {
+  background-color: #f9f9f9;
+  opacity: 1 !important;
+  border-left: 3px solid #ffc107;
+  margin-top: 0;
+  box-shadow: none;
+}

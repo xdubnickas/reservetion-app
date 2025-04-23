@@ -1,0 +1,84 @@
+.localities-page h1 {
+  color: #333;
+  margin-bottom: 1.5rem;
+}
+
+.filter-section {
+  background-color: #f8f9fa;
+  padding: 1.5rem;
+  border-radius: 8px;
+  margin-bottom: 2rem;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+}
+
+.locality-card {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  border: none;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+}
+
+.locality-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 15px rgba(0,0,0,0.1);
+}
+
+.locality-details {
+  margin-bottom: 1rem;
+}
+
+.detail-item {
+  display: flex;
+  align-items: center;
+  margin-bottom: 0.5rem;
+}
+
+.detail-icon {
+  margin-right: 0.75rem;
+  color: #6c757d;
+}
+
+.rooms-list {
+  list-style-type: none;
+  padding-left: 0.5rem;
+  font-size: 0.9rem;
+}
+
+.rooms-list li {
+  padding: 0.3rem 0;
+}
+
+.more-rooms {
+  color: #6c757d;
+  font-style: italic;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .filter-section .row {
+    row-gap: 1rem;
+  }
+}
+
+/* Dark mode support */
+body.dark .localities-page h1 {
+  color: #f8f9fa;
+}
+
+body.dark .filter-section {
+  background-color: #343a40;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+}
+
+body.dark .locality-card {
+  background-color: #2c3034;
+  color: #f8f9fa;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.3);
+}
+
+body.dark .detail-icon {
+  color: #adb5bd;
+}
+
+body.dark .more-rooms {
+  color: #adb5bd;
+}

@@ -1,0 +1,152 @@
+.categories-page {
+  padding-bottom: 4rem;
+}
+
+.categories-title {
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: #2c3e50;
+  margin-bottom: 0.5rem;
+}
+
+.categories-subtitle {
+  font-size: 1.1rem;
+  color: #6c757d;
+  max-width: 700px;
+  margin: 0 auto;
+}
+
+.category-card {
+  cursor: pointer;
+  border: none;
+  border-radius: 10px;
+  overflow: hidden;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  height: 100%;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.07);
+  position: relative;
+}
+
+.category-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+}
+
+.category-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 5px;
+  background-color: var(--category-color, #3498db);
+}
+
+.category-icon-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1.5rem 0 0.5rem 0;
+  font-size: 2.5rem;
+  color: var(--category-color, #3498db);
+}
+
+.category-name {
+  text-align: center;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+  color: #2c3e50;
+}
+
+.category-event-count {
+  text-align: center;
+  font-size: 0.9rem;
+  color: #6c757d;
+}
+
+.categories-info {
+  margin-top: 4rem;
+}
+
+.info-box {
+  background-color: #f8f9fa;
+  border-radius: 10px;
+  padding: 2rem;
+  text-align: center;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+}
+
+.info-box h3 {
+  font-weight: 600;
+  color: #2c3e50;
+  margin-bottom: 1rem;
+}
+
+.info-box p {
+  color: #6c757d;
+  margin-bottom: 1rem;
+}
+
+.info-box a {
+  color: #3498db;
+  text-decoration: none;
+  font-weight: 500;
+  transition: color 0.2s ease;
+}
+
+.info-box a:hover {
+  color: #2980b9;
+  text-decoration: underline;
+}
+
+/* Dark mode styles */
+body.dark .categories-title {
+  color: #ecf0f1;
+}
+
+body.dark .categories-subtitle {
+  color: #bdc3c7;
+}
+
+body.dark .category-card {
+  background-color: #34495e;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+body.dark .category-name {
+  color: #ecf0f1;
+}
+
+body.dark .category-event-count {
+  color: #bdc3c7;
+}
+
+body.dark .info-box {
+  background-color: #2c3e50;
+}
+
+body.dark .info-box h3 {
+  color: #ecf0f1;
+}
+
+body.dark .info-box p {
+  color: #bdc3c7;
+}
+
+body.dark .info-box a {
+  color: #3498db;
+}
+
+body.dark .info-box a:hover {
+  color: #2980b9;
+}
+
+@media (max-width: 768px) {
+  .categories-title {
+    font-size: 2rem;
+  }
+  
+  .category-icon-container {
+    font-size: 2rem;
+  }
+}

@@ -1,0 +1,480 @@
+.nav-link {
+    transition: color 0.3s ease-in-out;
+  }
+/* TODO treba vsetk bud ako dark alebo light dat a zoskupit PRVKY DO JEDNEHO BLOKU A POPORADI NA KAZDE ABY NEBOLI 
+ZBYTOCNE VECIO NAVYSE CO SA PREKRYVAJU A DUPLICITNY KOD*/
+
+.search-bar .form-control {
+  padding-left: 40px;
+  padding-top: 8px;  /* Zvýšené vnútorné odsadenie hore */
+  padding-bottom: 8px; /* Zvýšené vnútorné odsadenie dole */
+  font-size: 16px; /* Zvýšená veľkosť písma */
+  height: 40px; /* Definuje výšku inputu */
+}
+
+
+.navbar-dark .navbar-nav .nav-link {
+  font-size: 1.1rem;
+}
+/* kategorie */
+body.dark .navbar-dark .navbar-nav .nav-link {
+  color: #faf8f8;
+}
+
+body.light .navbar-dark .navbar-nav .nav-link {
+  color: #03045e;
+}
+
+body.dark .navbar-dark .navbar-nav .nav-link:hover {
+  color: #2d9dff;
+}
+body.light .navbar-dark .navbar-nav .nav-link:hover {
+  color: #2386dd; 
+}
+
+.navbar-dark .navbar-brand {
+  font-weight: bold;
+  font-size: 1.5rem;
+  color: #f8f9fa;
+}
+body.light .navbar-dark .navbar-brand {
+  color: #03045e; /* Deep Blue text for brand */
+}
+
+#MyNavbar2 {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 1000;
+  transition: transform 0.3s ease, background-color 0.6s ease, color 0.5s ease;
+}
+
+.navbar-scrolled-up {
+  transform: translateY(0);
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.navbar-scrolled-down {
+  transform: translateY(-100%);
+}
+
+/* Add padding to the body to prevent content from being hidden under the navbar */
+body {
+  padding-top: 70px; /* Adjust based on your navbar height */
+}
+
+body.dark #MyNavbar2 {
+  background-color: #0c3257;
+}
+body.light #MyNavbar2 {
+  background-color: #c2e5f8; /* Very Light Cyan background for light mode */
+}
+
+.navbar-btn {
+  padding: 8px 20px;
+  font-size: 16px;
+  border-radius: 30px;
+  border: none; /* Bez okraja */
+  transition: background-color 0.3s ease, color 0.3s ease; /* Smooth transition for background and color */
+}
+/* Dark mode button styles */
+body.dark .navbar-btn {
+  background-color: #2a5482; /* Príklad modrej farby pozadia */
+  color: white; /* Svetlý text */
+  
+}
+
+body.dark .navbar-btn:hover {
+  background-color: #3573c4; /* Tmavšia modrá pri hover */
+  color: #ffffff; /* Svetlý text pri hover */
+}
+
+
+/* Light mode button styles */
+body.light .navbar-btn {
+  background-color: #96d8f4ba; /* Svetlý cyan pre tlačidlo */
+  color: #03045e; /* Tmavomodrý text */
+  border: none; /* Bez okraja */
+}
+
+body.light .navbar-btn:hover {
+  background-color: #7ac5e5cf; /* Tmavší cyan pri hover */
+  color: #03045e; /* Tmavý text pri hover */
+}
+
+
+
+body.light .search-button {
+  background-color: #ecf0f1;
+  color: #03045e;
+}
+
+body.light .search-button:hover {
+  background-color: #9dc7ee;
+  color: #03045e;
+}
+
+body.light .search-input {
+  background-color: #efefef;
+  color: #03045e;
+}
+
+
+body.light .search-input::placeholder {
+  color: #03045e;
+}
+
+body.light .search-input:focus {
+  box-shadow: 0 0 5px #00b4d8;
+}
+
+
+body.dark .search-button {
+  background-color: #343a40; /* Tmavošedá farba pre tlačidlo */
+  color: #f8f9fa; /* Svetlá farba textu */
+}
+
+body.dark .search-button:hover {
+  background-color: #495057; /* Svetlejšia tmavošedá pri hover */
+  color: #f8f9fa; /* Svetlá farba textu */
+}
+
+body.dark .search-input {
+  background-color: #212529; /* Tmavé pozadie pre vstupné pole */
+  color: #f8f9fa; /* Svetlá farba textu */
+}
+
+
+body.dark .search-input:focus {
+  background-color: #343a40; /* Mierne svetlejšia tmavá pri focus */
+  box-shadow: 0 0 5px #010a2c; /* Jemný modrý tieň */
+}
+
+.navbar-dark .navbar-nav .nav-link,
+.btn-light-toggle,
+.search-button,
+.navbar-btn {
+  transition: transform 0.15s ease, background-color 0.4s ease;
+}
+
+
+.btn-light-toggle:hover,
+.search-button:hover {
+  transform: scale(1.07);
+  background-color: #1e3a5f;
+}
+
+.navbar-btn:hover {
+  background-color: #1e3a5f;
+}
+.navbar-dark .navbar-nav .nav-link:hover{
+  transform: scale(1.07);
+}
+
+.btn-light-toggle:active,
+.search-button:active,
+.navbar-btn:active,
+.navbar-dark .navbar-nav .nav-link:active{
+  transform: scale(0.96);
+}
+
+/* Svetlý režim */
+body.light .btn-light-toggle {
+  background-color: #0c3257;
+}
+
+/* Tmavý režim */
+body.dark .btn-light-toggle {
+  background-color: #c2e5f8ec;
+}
+
+.user-icon-btn,
+.navbar-dark .navbar-nav .nav-link,
+.btn-light-toggle,
+.search-button,
+.navbar-btn {
+  transition: transform 0.15s ease, background-color 0.4s ease;
+}
+
+.btn-light-toggle:hover,
+.search-button:hover {
+  transform: scale(1.07);
+  background-color: #1e3a5f;
+}
+
+.navbar-dark .navbar-nav .nav-link:hover{
+  transform: scale(1.07);
+}
+
+.user-icon-btn:active,
+.btn-light-toggle:active,
+.search-button:active,
+.navbar-btn:active,
+.navbar-dark .navbar-nav .nav-link:active{
+  transform: scale(0.96);
+}
+
+/* Svetlý režim */
+body.light .btn-light-toggle {
+  background-color: #0c3257;
+}
+
+/* Tmavý režim */
+body.dark .btn-light-toggle {
+  background-color: #c2e5f8ec;
+}
+
+.user-icon-btn {
+  padding: 0;
+  background-color: #00b4d8;
+  color: #f2f3f4;
+}
+
+body.dark .user-icon-btn {
+  background-color: #0c2355;
+}
+
+/* Pridané štýly pre light mode */
+body.light .user-icon-btn {
+  background-color: #4073a5;
+  color: white;
+}
+
+.user-icon-btn:hover {
+  transform: scale(1.04);
+
+}
+
+body.dark .user-icon-btn:hover {
+  background-color: #193e8e;
+}
+
+body.light .user-icon-btn:hover {
+  background-color: #64a3e3;
+}
+
+
+/* Login Form Container */
+.login-form-container {
+  position: absolute;
+  top: 70px; /* Nastav, aby sa formulár zobrazil pod navigáciou */
+  right: 20px;
+  z-index: 1000;
+  width: 300px;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+  transition: all 0.3s ease;
+}
+
+body.dark .login-form-container {
+  background-color: #2c3e50; /* Tmavé pozadie */
+  color: #ecf0f1; /* Svetlý text */
+}
+
+body.light .login-form-container {
+  background-color: #f8f9fa; /* Svetlé pozadie */
+  color: #03045e; /* Tmavý text */
+}
+
+/* Form Styling */
+.form-dark {
+  background-color: #34495e; /* Tmavé pozadie pre dark režim */
+  color: #ecf0f1;
+  border-radius: 10px;
+}
+
+.form-light {
+  background-color: #ffffff; /* Svetlé pozadie pre light režim */
+  color: #333;
+  border-radius: 10px;
+}
+
+/* Inputs Styling */
+.dark-input {
+  background-color: #2c3e50;
+  color: #ecf0f1;
+  border: 1px solid #495057;
+}
+
+.light-input {
+  background-color: #f8f9fa;
+  color: #03045e;
+  border: 1px solid #ced4da;
+}
+
+.dark-input:focus,
+.light-input:focus {
+  outline: none;
+  box-shadow: 0 0 5px #007bff;
+}
+
+/* Add these new styles for dark inputs focus state */
+body.dark .dark-input:focus {
+  background-color: #2c3e50 !important;
+  color: #ecf0f1 !important;
+}
+
+body.dark .form-control:focus {
+  background-color: #2c3e50 !important;
+  color: #ecf0f1 !important;
+  border-color: #495057;
+}
+
+/* Ensure autofill doesn't override our styles */
+body.dark input:-webkit-autofill,
+body.dark input:-webkit-autofill:hover, 
+body.dark input:-webkit-autofill:focus {
+  -webkit-text-fill-color: #ecf0f1;
+  -webkit-box-shadow: 0 0 0px 1000px #2c3e50 inset;
+  transition: background-color 5000s ease-in-out 0s;
+}
+
+.btn-danger {
+  border-radius: 30px;
+  background-color: #dc3545;
+  color: white;
+  border: none;
+}
+
+
+/* Modern User Menu Button Styling */
+.user-menu-buttons {
+  margin-top: 15px;
+}
+
+.user-menu-btn {
+  border-radius: 10px;
+  font-weight: 500;
+  padding: 10px;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  border: none;
+}
+
+.user-menu-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+}
+
+.user-menu-btn:active {
+  transform: translateY(1px);
+}
+
+/* Dark mode styling for user menu buttons */
+body.dark .user-menu-btn {
+  background: linear-gradient(145deg, #1e5799, #207cca);
+  color: #fff;
+}
+
+body.dark .user-menu-btn:hover {
+  background: linear-gradient(145deg, #207cca, #1e5799);
+}
+
+body.dark .user-menu-btn.btn-danger {
+  background: linear-gradient(145deg, #d32f2f, #b71c1c);
+}
+
+body.dark .user-menu-btn.btn-danger:hover {
+  background: linear-gradient(145deg, #b71c1c, #d32f2f);
+}
+
+/* Light mode styling for user menu buttons */
+body.light .user-menu-btn {
+  background: linear-gradient(145deg, #7ac5e5, #96d8f4);
+  color: #03045e;
+}
+
+body.light .user-menu-btn:hover {
+  background: linear-gradient(145deg, #96d8f4, #7ac5e5);
+  color: #03045e;
+}
+
+body.light .user-menu-btn.btn-danger {
+  background: linear-gradient(145deg, #ff6b6b, #ee5253);
+  color: white;
+}
+
+body.light .user-menu-btn.btn-danger:hover {
+  background: linear-gradient(145deg, #ee5253, #ff6b6b);
+}
+
+/* Styling for categories dropdown */
+.categories-dropdown .dropdown-menu {
+  max-height: 300px;
+  overflow-y: auto;
+  border-radius: 8px;
+}
+
+.categories-dropdown .dropdown-item {
+  padding: 0.5rem 1.5rem;
+  transition: background-color 0.2s ease;
+}
+
+/* Keep dropdown styling consistent with dark/light mode */
+.dark .categories-dropdown .dropdown-menu {
+  background-color: #353535;
+  border-color: #444;
+}
+
+.dark .categories-dropdown .dropdown-item {
+  color: #f1f1f1;
+}
+
+.dark .categories-dropdown .dropdown-item:hover {
+  background-color: #444;
+}
+
+/* Navbar štýly pri malých obrazovkách */
+@media (max-width: 767px) {
+  .navbar-nav {
+    text-align: center;
+  }
+  .navbar-toggler {
+    margin-right: 0;
+  }
+  
+  /* Zabezpečí lepšie zobrazenie formulárov a tlačidiel */
+  .search-bar {
+    width: 100%;
+  }
+
+  .navbar-btn {
+    width: 100%;
+    margin-bottom: 10px;
+  }
+
+  .btn-light-toggle {
+    margin-top: 10px;
+  }
+}
+
+@media (max-width: 991px) {
+  .navbar-collapse {
+    text-align: center;
+  }
+  
+  .navbar-collapse .nav-link,
+  .navbar-collapse .search-bar {
+    margin: 5px auto;
+  }
+
+  .navbar-collapse .user-icon-btn {
+    margin: 5px 0;
+  }
+
+  .navbar-collapse .btn-light-toggle {
+    margin: 5px 0;
+    margin-right: 0rem !important;
+  }
+
+  .navbar-collapse .search-bar {
+    max-width: 300px;
+    width: 100%;
+  }
+
+  /* Remove the margin-end from user icon button */
+  .user-icon-btn.me-5 {
+    margin-right: 0rem !important;
+  }
+}

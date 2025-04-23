@@ -1,0 +1,63 @@
+
+services:
+  # MySQL Database
+  db:
+    image: mysql:8.0
+    container_name: reservation-db
+    restart: unless-stopped
+    environment:
+      MYSQL_ROOT_PASSWORD: strongpassworduiqwei89
+      MYSQL_DATABASE: reservation2_db
+    ports:
+      - "13306:3306"  # Changed external port to 13306
+    volumes:
+      - mysql-data:/var/lib/mysql
+      - ./init.sql:/docker-entrypoint-initdb.d/init.sql
+    networks:
+      - reservation-network
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  # Backend Service
+  backend:
+    build: 
+      context: ./reservation-system
+      dockerfile: Dockerfile
+    container_name: reservation-backend
+    restart: unless-stopped
+    environment:
+      - SPRING_PROFILES_ACTIVE=docker
+    ports:
+      - "8080:8080"
+    depends_on:
+      db:
+        condition: service_healthy
+    volumes:
+      - ./uploaded-images:/app/uploaded-images
+    networks:
+      - reservation-network
+
+  # Frontend Service
+  frontend:
+    build: 
+      context: ./frontend
+      dockerfile: Dockerfile
+    container_name: reservation-frontend
+    restart: unless-stopped
+    ports:
+      - "80:80"
+    depends_on:
+      - backend
+    networks:
+      - reservation-network
+
+networks:
+  reservation-network:
+    driver: bridge
+
+volumes:
+  mysql-data:
+    driver: local

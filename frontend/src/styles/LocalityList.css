@@ -1,0 +1,246 @@
+.locality-card {
+    background-color: var(--bs-body-bg);
+    color: var(--bs-body-color);
+}
+
+.locality-card .card-title {
+    color: var(--bs-body-color);
+    font-size: 1.1rem;
+    font-weight: 500;
+    margin-bottom: 1rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.locality-card .card-title:hover {
+    color: var(--bs-primary);
+}
+
+.locality-card .card-text {
+    color: var(--bs-body-color);
+}
+
+/* Enhanced Modal Styling */
+.locality-modal .modal-content {
+    background-color: var(--bs-body-bg);
+    color: var(--bs-body-color);
+    border-radius: 12px;
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.12);
+    border: none;
+}
+
+
+.locality-modal-dialog .modal-content {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    min-height: 577px;
+}
+
+.llisbuttons {
+    padding-top: 5.5rem;
+}
+
+
+.locality-modal .modal-header {
+    border-bottom-color: var(--bs-border-color);
+    padding: 1.25rem 1.5rem;
+}
+
+.locality-modal .modal-header .btn-close {
+    filter: var(--bs-btn-close-white);
+    opacity: 0.8;
+    transition: opacity 0.2s ease;
+}
+
+.locality-modal .modal-header .btn-close:hover {
+    opacity: 1;
+}
+
+.locality-modal .modal-body {
+    padding: 1.5rem 1.8rem;
+    flex: 1 1 auto;
+}
+
+.locality-modal .modal-title {
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+}
+
+.modal-title-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 36px;
+    height: 36px;
+    background-color: rgba(var(--bs-primary-rgb), 0.1);
+    color: var(--bs-primary);
+    border-radius: 8px;
+    font-size: 1.1rem;
+}
+
+.locality-modal .form-label {
+    color: var(--bs-body-color);
+    font-weight: 500;
+    margin-bottom: 0.5rem;
+}
+
+.locality-modal .form-control-modern,
+.locality-modal .form-select {
+    border-radius: 8px;
+    padding: 0.625rem 0.75rem;
+    border: 1px solid var(--bs-border-color);
+    background-color: var(--bs-body-bg);
+    color: var(--bs-body-color);
+    transition: all 0.2s ease;
+}
+
+.locality-modal .form-control-modern:focus,
+.locality-modal .form-select:focus {
+    border-color: var(--bs-primary);
+    box-shadow: 0 0 0 0.25rem rgba(var(--bs-primary-rgb), 0.15);
+}
+
+.locality-modal .input-group-text {
+    background-color: rgba(var(--bs-primary-rgb), 0.08);
+    border-color: var(--bs-border-color);
+    color: var(--bs-primary);
+    border-radius: 8px 0 0 8px;
+}
+
+.locality-modal .save-button {
+    padding: 0.5rem 1.25rem;
+    font-weight: 500;
+    border-radius: 8px;
+    transition: all 0.2s ease;
+}
+
+.locality-modal .save-button:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 4px 8px rgba(var(--bs-primary-rgb), 0.25);
+}
+
+.locality-modal-body {
+    max-height: none;
+    overflow-y: auto;
+    padding-bottom: 2rem;
+}
+
+.input-group{
+    flex-wrap: nowrap;
+}
+
+.add-locality-bottom {
+    text-align: center;
+    padding: 20px 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.add-locality-bottom .btn {
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    font-size: 20px;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.rooms-section {
+    border-top: 1px solid var(--bs-border-color);
+    margin-top: 1rem;
+    padding-top: 1rem;
+}
+
+.rooms-table {
+    font-size: 0.9rem;
+}
+
+.rooms-table th {
+    font-weight: 500;
+    color: var(--bs-secondary);
+}
+
+.add-room-button {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 1rem auto 0.5rem;
+}
+
+.cursor-pointer {
+    cursor: pointer;
+}
+
+.cursor-pointer:hover h6,
+.cursor-pointer:hover .text-secondary {
+    color: var(--bs-primary) !important;
+    transition: color 0.2s ease;
+}
+
+.rooms-header {
+    padding: 8px;
+    border-radius: 4px;
+    transition: background-color 0.2s ease;
+    margin-top: 12px;
+    border: 1px solid transparent;
+    /* Keep position fixed on hover */
+    transform: translateY(0);
+}
+
+.rooms-header:hover {
+    background-color: rgba(var(--bs-primary-rgb), 0.05);
+    border-color: rgba(var(--bs-primary-rgb), 0.1);
+    /* Ensure no vertical movement */
+    transform: translateY(0);
+}
+
+/* Modify chevron animation to not affect vertical position */
+.rooms-header .text-secondary {
+    transition: color 0.2s ease;
+}
+
+.rooms-header:hover .text-secondary {
+    /* Remove the translateY that was causing the element to move */
+    transform: none;
+}
+
+/* City suggestions styling */
+.city-suggestions {
+    max-height: 200px;
+    overflow-y: auto;
+    z-index: 1050;
+    margin-top: 2px;
+    border-radius: 4px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.15);
+}
+
+.city-suggestion-item {
+    padding: 8px 12px;
+    cursor: pointer;
+}
+
+.city-suggestion-item:hover {
+    background-color: var(--bs-primary-bg-subtle);
+}
+
+.no-suggestions {
+    padding: 8px 12px;
+    margin-top: 2px;
+    background-color: var(--bs-body-bg);
+    border: 1px solid var(--bs-border-color);
+    border-radius: 4px;
+    color: var(--bs-gray-600);
+    text-align: center;
+    z-index: 1050;
+}

@@ -1,0 +1,443 @@
+/* Container sizing with scoped class name */
+.event-detail-container {
+  max-width: 1400px;
+  padding-left: 20px;
+  padding-right: 20px;
+}
+
+/* Event Header */
+.event-detail-header {
+  display: flex;
+  justify-content: flex-start;
+}
+
+.event-detail-back-button {
+  font-weight: 500;
+  border-radius: 50px;
+  padding: 0.5rem 1.25rem;
+  transition: all 0.2s ease;
+}
+
+.event-detail-back-button:hover {
+  transform: translateX(-5px);
+}
+
+/* Hero Section */
+.event-detail-hero {
+  background-color: #fff;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+}
+
+.event-detail-hero-wrapper {
+  padding: 15px;
+  height: 100%;
+}
+
+.event-detail-hero-image-col {
+  height: 480px;
+  overflow: hidden;
+  background-color: #f9f9fa;
+}
+
+.event-detail-hero-image-container {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  border-radius: 8px;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+}
+
+.event-detail-hero-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.5s ease;
+}
+
+.event-detail-hero-image:hover {
+  transform: scale(1.03);
+}
+
+.event-detail-hero-image-placeholder {
+  width: 100%;
+  height: 100%;
+  min-height: 450px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #f8f9fa;
+  border-radius: 8px;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+}
+
+.event-detail-hero-details-col {
+  background-color: #fff;
+  display: flex;
+  flex-direction: column;
+}
+
+.event-detail-hero-content {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  padding: 2rem;
+}
+
+.event-detail-title {
+  font-size: 2rem;
+  font-weight: 700;
+  line-height: 1.2;
+  margin-bottom: 1rem;
+  color: #212529;
+}
+
+.event-detail-reserve-cta {
+  margin-top: auto;
+  padding-top: 1rem;
+}
+
+/* Reserve Button Improvements */
+.event-detail-reserve-button {
+  width: 100%;
+  padding: 1rem 1.5rem;
+  font-size: 1.1rem;
+  font-weight: 600;
+  background-color: #007bff;
+  border-color: #007bff;
+  border-radius: 8px;
+  letter-spacing: 0.5px;
+  box-shadow: 0 4px 12px rgba(0, 123, 255, 0.3);
+  transition: all 0.3s ease;
+  text-transform: uppercase;
+}
+
+.event-detail-reserve-button:hover,
+.event-detail-reserve-button:focus {
+  background-color: #0069d9;
+  border-color: #0069d9;
+  box-shadow: 0 6px 15px rgba(0, 123, 255, 0.4);
+  transform: translateY(-2px);
+}
+
+.event-detail-reserve-button:active {
+  transform: translateY(0);
+  box-shadow: 0 2px 8px rgba(0, 123, 255, 0.3);
+}
+
+.event-detail-reservation-note {
+  font-size: 0.9rem;
+  color: #6c757d;
+  text-align: center;
+  margin-top: 0.75rem;
+}
+
+/* Event Content Sections */
+.event-detail-sections {
+  margin-top: 3rem;
+}
+
+.event-detail-section-title {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: #2c3e50;
+}
+
+.event-detail-description-card,
+.event-detail-organizer-card,
+.event-detail-venue-card {
+  border: none;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+  height: 100%;
+}
+
+.event-detail-description-card .card-header,
+.event-detail-organizer-card .card-header,
+.event-detail-venue-card .card-header {
+  padding: 1.25rem 1.5rem;
+  border-bottom: 1px solid rgba(0,0,0,0.05);
+}
+
+.event-detail-description-header {
+  background-color: #f8f9fa;
+  border-bottom: 1px solid rgba(0,0,0,0.05);
+}
+
+.event-detail-description {
+  font-size: 1.05rem;
+  line-height: 1.7;
+  color: #495057;
+  padding: 1rem 0.5rem;
+}
+
+/* Event Information Grid */
+.event-detail-info-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1rem;
+  margin: 1.5rem 0;
+}
+
+.event-detail-info-item {
+  display: flex;
+  align-items: center;
+  padding: 0.5rem;
+  background-color: #f8f9fa;
+  border-radius: 8px;
+  transition: all 0.2s ease;
+}
+
+.event-detail-info-item:hover {
+  background-color: #e9ecef;
+  transform: translateY(-2px);
+}
+
+.event-detail-info-icon {
+  color: #007bff;
+  font-size: 1.2rem;
+  margin-right: 0.75rem;
+  min-width: 24px;
+  text-align: center;
+}
+
+.event-detail-info-content {
+  flex: 1;
+  overflow: hidden;
+}
+
+.event-detail-info-date, 
+.event-detail-info-time, 
+.event-detail-info-location, 
+.event-detail-info-capacity {
+  font-weight: 600;
+  font-size: 0.95rem;
+  color: #212529;
+  display: block;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* Venue Information Layout */
+.event-detail-venue-info-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  margin-top: 1rem;
+}
+
+.event-detail-venue-info-item {
+  display: flex;
+  flex-direction: column;
+  padding-bottom: 0.5rem;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+.event-detail-venue-info-label {
+  display: flex;
+  align-items: center;
+  font-size: 0.85rem;
+  color: #6c757d;
+  margin-bottom: 0.25rem;
+}
+
+.event-detail-venue-info-value {
+  font-weight: 600;
+  font-size: 1rem;
+  color: #212529;
+}
+
+/* Organizer styles */
+.event-detail-organizer-avatar-container {
+  display: flex;
+  justify-content: center;
+}
+
+.event-detail-organizer-avatar {
+  width: 80px;
+  height: 80px;
+  background-color: #28a745;
+  color: white;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.75rem;
+  font-weight: 600;
+}
+
+.event-detail-organizer-name {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: #2c3e50;
+}
+
+.event-detail-organizer-company {
+  font-size: 0.95rem;
+  color: #6c757d;
+}
+
+.event-detail-contact-section {
+  border-top: 1px solid #eee;
+  padding: 1.5rem !important;
+}
+
+.event-detail-contact-section h6 {
+  margin-bottom: 1.25rem;
+  font-size: 0.95rem;
+}
+
+.event-detail-contact-item {
+  display: flex;
+  align-items: center;
+  margin-bottom: 1rem;
+  padding-left: 0.5rem;
+}
+
+.event-detail-contact-icon {
+  min-width: 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-right: 0.75rem;
+}
+
+.event-detail-contact-text {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.event-detail-contact-text a {
+  display: block;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* Map styles */
+.event-detail-venue-map-col {
+  display: flex;
+  align-items: center;
+}
+
+.event-detail-venue-map {
+  width: 100%;
+  height: 220px;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+  position: relative; /* Added position relative */
+}
+
+.event-detail-venue-map iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100% !important;
+  height: 100% !important;
+  border: 0;
+}
+
+/* About this event section */
+.event-detail-availability-section {
+  background-color: #f8f9fa;
+  padding: 1.25rem;
+  border-radius: 8px;
+  margin-top: 2rem;
+}
+
+.event-detail-availability-title {
+  font-size: 1.1rem;
+  font-weight: 600;
+  margin-bottom: 1rem;
+  color: #343a40;
+}
+
+.event-detail-ticket-progress {
+  height: 10px;
+  border-radius: 5px;
+}
+
+/* Clickable Venue */
+.clickable-venue {
+  color: #007bff;
+  cursor: pointer;
+  transition: color 0.2s;
+}
+
+.clickable-venue:hover {
+  color: #0056b3;
+}
+
+/* Media queries */
+@media (max-width: 767px) {
+  .event-detail-hero-image-col {
+    height: 250px;
+  }
+  
+  .event-detail-hero-image-placeholder {
+    min-height: 250px;
+  }
+
+  .event-detail-info-grid {
+    grid-template-columns: 1fr;
+    gap: 0.75rem;
+  }
+  
+  .event-detail-venue-map {
+    height: 200px;
+    margin-top: 1rem;
+  }
+  
+  .event-detail-venue-details-col {
+    padding-right: 0;
+    margin-bottom: 1.5rem;
+  }
+
+  .event-detail-description-card,
+  .event-detail-organizer-card {
+    margin-bottom: 1.5rem;
+  }
+}
+
+@media (max-width: 991px) {
+  .event-detail-hero-image-col {
+    height: 350px;
+  }
+  
+  .event-detail-hero-image-placeholder {
+    min-height: 350px;
+  }
+  
+  .event-detail-hero-content {
+    padding: 2rem 1.5rem;
+  }
+  
+  .event-detail-title {
+    font-size: 1.75rem;
+  }
+  
+  .event-detail-venue-map {
+    height: 200px;
+  }
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+  .event-detail-info-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  
+  .event-detail-venue-map {
+    height: 220px;
+  }
+}
+
+@media (min-width: 992px) {
+  .event-detail-venue-map {
+    height: 240px;
+  }
+}

@@ -1,0 +1,98 @@
+.reserve-btn {
+  background-color: #28a745;
+  border-color: #28a745;
+  font-weight: 600;
+  border-radius: 50px;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.reserve-btn:hover {
+  background-color: #218838;
+  border-color: #1e7e34;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.reserve-btn:active {
+  transform: translateY(0);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.reservation-modal .modal-content {
+  border-radius: 12px;
+  border: none;
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
+}
+
+.reservation-modal .modal-header {
+  border-bottom: 1px solid #f0f0f0;
+  padding: 1.25rem 1.5rem;
+}
+
+.reservation-modal .modal-footer {
+  border-top: 1px solid #f0f0f0;
+  padding: 1.25rem 1.5rem;
+}
+
+.reservation-modal .modal-body {
+  padding: 1.5rem;
+}
+
+.event-modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.event-modal-details {
+  background-color: #f8f9fa;
+  padding: 1.25rem;
+  border-radius: 10px;
+  margin-top: 10px;
+}
+
+.detail-row {
+  display: flex;
+  margin-bottom: 12px;
+  align-items: center;
+}
+
+.detail-row:last-child {
+  margin-bottom: 0;
+}
+
+.detail-icon {
+  width: 30px;
+  height: 30px;
+  background-color: rgba(40, 167, 69, 0.1);
+  color: #28a745;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 15px;
+}
+
+.price-value {
+  font-weight: 700;
+  color: #28a745;
+}
+
+.category-badge {
+  font-size: 0.8rem;
+  padding: 0.4em 0.8em;
+}
+
+.confirm-btn {
+  padding-left: 1.5rem;
+  padding-right: 1.5rem;
+}
+
+.confirmation-message {
+  text-align: center;
+  font-weight: 500;
+}
