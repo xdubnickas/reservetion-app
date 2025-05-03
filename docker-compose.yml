@@ -35,7 +35,7 @@ services:
       db:
         condition: service_healthy
     volumes:
-      - ./uploaded-images:/app/uploaded-images
+      - ./reservation-system/uploaded-images:/app/uploaded-images
     networks:
       - reservation-network
 
