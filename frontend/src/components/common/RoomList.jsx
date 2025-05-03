@@ -1,8 +1,9 @@
 import { useState } from 'react';
 import { Button, Table, Modal, Form } from 'react-bootstrap';
-import PropTypes from 'prop-types'; // Add this line
+import PropTypes from 'prop-types';
 import { roomService } from '../../services/roomService';
 import DeleteConfirmationModal from './DeleteConfirmationModal';
+import '../../styles/RoomList.css';
 
 const RoomList = ({ localityId, rooms, onRoomUpdate, onLocalityUpdate }) => {
   const [showModal, setShowModal] = useState(false);
@@ -24,7 +25,7 @@ const RoomList = ({ localityId, rooms, onRoomUpdate, onLocalityUpdate }) => {
         await roomService.createRoom(localityId, formData);
       }
       await onRoomUpdate();
-      await onLocalityUpdate(); // Add this line
+      await onLocalityUpdate();
       setShowModal(false);
     } catch (error) {
       console.error('Failed to save room:', error);
@@ -40,7 +41,7 @@ const RoomList = ({ localityId, rooms, onRoomUpdate, onLocalityUpdate }) => {
     try {
       await roomService.deleteRoom(localityId, roomToDelete);
       await onRoomUpdate();
-      await onLocalityUpdate(); // Add this line
+      await onLocalityUpdate();
       setShowDeleteModal(false);
     } catch (error) {
       console.error('Failed to delete room:', error);
@@ -69,7 +70,7 @@ const RoomList = ({ localityId, rooms, onRoomUpdate, onLocalityUpdate }) => {
                   <Button
                     size="sm"
                     variant="link"
-                    className="me-2 p-0"
+                    className="me-2 p-0 room-edit-btn"
                     onClick={() => {
                       setCurrentRoom(room);
                       setFormData(room);
@@ -81,7 +82,7 @@ const RoomList = ({ localityId, rooms, onRoomUpdate, onLocalityUpdate }) => {
                   <Button
                     size="sm"
                     variant="link"
-                    className="text-danger p-0"
+                    className="text-danger p-0 room-delete-btn"
                     onClick={() => handleDelete(room.id)}
                   >
                     Delete
@@ -106,7 +107,7 @@ const RoomList = ({ localityId, rooms, onRoomUpdate, onLocalityUpdate }) => {
         +
       </Button>
 
-      <Modal show={showModal} onHide={() => setShowModal(false)}>
+      <Modal show={showModal} onHide={() => setShowModal(false)} className="room-modal">
         <Modal.Header closeButton>
           <Modal.Title>{currentRoom ? 'Edit Room' : 'Add Room'}</Modal.Title>
         </Modal.Header>
@@ -119,6 +120,7 @@ const RoomList = ({ localityId, rooms, onRoomUpdate, onLocalityUpdate }) => {
                 value={formData.name}
                 onChange={(e) => setFormData({...formData, name: e.target.value})}
                 required
+                className="room-form-control"
               />
             </Form.Group>
             <Form.Group className="mb-3">
@@ -128,6 +130,7 @@ const RoomList = ({ localityId, rooms, onRoomUpdate, onLocalityUpdate }) => {
                 value={formData.floor}
                 onChange={(e) => setFormData({...formData, floor: Number(e.target.value)})}
                 required
+                className="room-form-control"
               />
             </Form.Group>
             <Form.Group className="mb-3">
@@ -135,15 +138,44 @@ const RoomList = ({ localityId, rooms, onRoomUpdate, onLocalityUpdate }) => {
               <Form.Control
                 type="number"
                 value={formData.capacity}
-                onChange={(e) => setFormData({...formData, capacity: Number(e.target.value)})}
+                onChange={(e) => {
+                  const inputValue = e.target.value;
+                  
+                  // Allow empty input initially
+                  if (inputValue === '') {
+                    setFormData({...formData, capacity: inputValue});
+                    return;
+                  }
+                  
+                  // Only allow positive integers
+                  if (!/^[0-9]+$/.test(inputValue)) {
+                    return;
+                  }
+                  
+                  const numValue = parseInt(inputValue);
+                  
+                  // Validate minimum value
+                  if (numValue < 1) {
+                    console.warn('Minimum capacity is 1');
+                    setFormData({...formData, capacity: '1'});
+                  } else {
+                    setFormData({...formData, capacity: inputValue});
+                  }
+                }}
+                min="1"
                 required
+                placeholder="Minimum capacity is 1"
+                className="room-form-control"
               />
+              <Form.Text className="text-muted">
+                Capacity must be at least 1
+              </Form.Text>
             </Form.Group>
             <div className="d-flex justify-content-end">
-              <Button variant="secondary" className="me-2" onClick={() => setShowModal(false)}>
+              <Button variant="outline-secondary" className="me-2 room-cancel-btn" onClick={() => setShowModal(false)}>
                 Cancel
               </Button>
-              <Button variant="primary" type="submit">
+              <Button variant="primary" type="submit" className="room-save-btn">
                 Save
               </Button>
             </div>

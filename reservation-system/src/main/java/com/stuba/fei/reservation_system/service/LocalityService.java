@@ -1,10 +1,7 @@
 package com.stuba.fei.reservation_system.service;
 
 import com.stuba.fei.reservation_system.handler.ResourceNotFoundException;
-import com.stuba.fei.reservation_system.model.City;
-import com.stuba.fei.reservation_system.model.Event;
-import com.stuba.fei.reservation_system.model.EventStatus;
-import com.stuba.fei.reservation_system.model.Locality;
+import com.stuba.fei.reservation_system.model.*;
 import com.stuba.fei.reservation_system.model.dto.CityRequest;
 import com.stuba.fei.reservation_system.model.dto.LocalityRequest;
 import com.stuba.fei.reservation_system.model.users.Person;
@@ -15,6 +12,7 @@ import com.stuba.fei.reservation_system.repository.users.PersonRepository;
 import com.stuba.fei.reservation_system.repository.users.SpaceRenterRepository;
 import com.stuba.fei.reservation_system.service.users.SpaceRenterService;
 import jakarta.persistence.EntityNotFoundException;
+import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.AuthenticationException;
@@ -131,7 +129,7 @@ public class LocalityService {
                 existingCity.getCountry().equals(request.getCountry());
     }
 
-    // Odstrániť lokalitu
+    @Transactional
     public void deleteLocality(Long id) {
 
         Locality locality = localityRepository.findById(id)
@@ -144,8 +142,21 @@ public class LocalityService {
             throw new AuthenticationException("You need to be authenticated to perform this action") {};
         }
 
-        localityRepository.deleteById(id);
+        // Pre každú miestnosť odstráň jej väzby na udalosti
+        for (Room room : locality.getRooms()) {
+            List<Event> affectedEvents = room.getEvents();
+
+            for (Event event : affectedEvents) {
+                event.getRooms().remove(room);
+                event.setStatus(EventStatus.INACTIVE);
+            }
+
+            room.getEvents().clear();
+        }
+
+        localityRepository.delete(locality); // automaticky zmaže aj rooms kvôli cascade = ALL
     }
+
 
     /**
      * Get all events associated with a specific locality
@@ -168,8 +179,8 @@ public class LocalityService {
                                 room.getLocality().getId().equals(localityId)))
                 .collect(Collectors.toList());
         
-        // Update status for all events before returning
-        localityEvents.forEach(Event::updateStatus);
+        // Update status for all events and save if changed
+        localityEvents.forEach(this::updateAndSaveEventStatus);
         
         // Sort events by date (soonest first)
         localityEvents.sort(Comparator.comparing(Event::getEventDate));
@@ -190,8 +201,7 @@ public class LocalityService {
         // Get events for this locality - using the same method we use to display events
         List<Event> localityEvents = getEventsByLocality(localityId);
         
-        // Make sure all events have their status updated before counting
-        localityEvents.forEach(Event::updateStatus);
+        // Events are already updated by getEventsByLocality
         
         // Count active events (those with ACTIVE status)
         long activeEventsCount = localityEvents.stream()
@@ -203,5 +213,18 @@ public class LocalityService {
         counts.put("total", localityEvents.size());
         
         return counts;
+    }
+    
+    /**
+     * Helper method to update and save event status
+     * @param event The event to update
+     */
+    private void updateAndSaveEventStatus(Event event) {
+        EventStatus oldStatus = event.getStatus();
+        event.updateStatus();
+        // Only save if status has changed
+        if (oldStatus != event.getStatus()) {
+            eventRepository.save(event);
+        }
     }
 }

@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { Card, Button, Modal, Form, Collapse, Badge } from 'react-bootstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faChevronRight, faChevronDown, faCalendarCheck, faCalendarAlt } from '@fortawesome/free-solid-svg-icons';
+import { faChevronRight, faChevronDown, faCalendarCheck, faCalendarAlt, faBuilding, faEdit, faTrash } from '@fortawesome/free-solid-svg-icons';
 import { localityService } from '../../services/localityService';
 import { roomService } from '../../services/roomService';
 import RoomList from './RoomList';
@@ -33,7 +33,6 @@ const LocalityList = () => {
     try {
       const data = await localityService.getMyLocalities();
       setLocalities(data);
-      // Load event counts for each locality
       data.forEach(locality => {
         loadEventCounts(locality.id);
       });
@@ -92,11 +91,18 @@ const LocalityList = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    
+    // We still ensure capacity is at least 1 on submit as a safety measure
+    const adjustedFormData = {
+      ...formData,
+      totalCapacity: Math.max(1, parseInt(formData.totalCapacity) || 1)
+    };
+    
     try {
       if (currentLocality) {
-        await localityService.updateLocality(currentLocality.id, formData);
+        await localityService.updateLocality(currentLocality.id, adjustedFormData);
       } else {
-        await localityService.createLocality(formData);
+        await localityService.createLocality(adjustedFormData);
       }
       loadLocalities();
       setShowModal(false);
@@ -171,6 +177,7 @@ const LocalityList = () => {
             <Card className="locality-card">
               <Card.Body>
                 <Card.Title>
+                  <FontAwesomeIcon icon={faBuilding} className="me-2" />
                   {locality.name}
                 </Card.Title>
                 <Card.Text>
@@ -178,7 +185,7 @@ const LocalityList = () => {
                   <strong>City:</strong> {locality.city.name}, {locality.city.country}<br/>
                   <strong>Total Capacity:</strong> {locality.totalCapacity}
                 </Card.Text>
-                <div className="event-counts-section mb-2">
+                <div className="event-counts-section mb-3">
                   <Badge bg="info" className="me-2">
                     <FontAwesomeIcon icon={faCalendarCheck} className="me-1" /> 
                     Active Events: {eventCounts[locality.id]?.active || 0}
@@ -194,12 +201,14 @@ const LocalityList = () => {
                     className="me-2"
                     onClick={() => handleEdit(locality)}
                   >
+                    <FontAwesomeIcon icon={faEdit} className="me-1" />
                     Edit
                   </Button>
                   <Button 
                     variant="outline-danger"
                     onClick={() => handleDelete(locality.id)}
                   >
+                    <FontAwesomeIcon icon={faTrash} className="me-1" />
                     Delete
                   </Button>
                 </div>
@@ -212,7 +221,6 @@ const LocalityList = () => {
                     icon={openLocality === locality.id ? faChevronDown : faChevronRight}
                     className="text-secondary"
                     size="sm"
-                    style={{ transition: 'transform 0.3s ease' }}
                   />
                 </div>
                 <Collapse in={openLocality === locality.id}>
@@ -231,9 +239,19 @@ const LocalityList = () => {
         ))}
       </div>
 
-      <div className="add-event-bottom">
+      {localities.length === 0 && (
+        <div className="text-center py-4">
+          <div className="mb-3">
+            <FontAwesomeIcon icon={faBuilding} size="3x" className="text-muted" />
+          </div>
+          <h5>No localities found</h5>
+          <p className="text-muted">Add your first locality to start managing spaces</p>
+        </div>
+      )}
+
+      <div className="add-locality-bottom">
         <button 
-          className="add-event-btn"
+          className="btn"
           onClick={() => {
             setCurrentLocality(null);
             resetFormData();
@@ -256,7 +274,7 @@ const LocalityList = () => {
         <Modal.Header closeButton>
           <Modal.Title>
             <span className="modal-title-icon">
-              <i className="bi bi-buildings"></i>
+              <FontAwesomeIcon icon={faBuilding} className="me-2" />
             </span>
             {currentLocality ? 'Edit Locality' : 'Add New Locality'}
           </Modal.Title>
@@ -290,12 +308,38 @@ const LocalityList = () => {
                         type="number"
                         min="1"
                         value={formData.totalCapacity}
-                        onChange={(e) => setFormData({...formData, totalCapacity: Number(e.target.value)})}
+                        onChange={(e) => {
+                          const inputValue = e.target.value;
+                          
+                          // Allow empty input initially
+                          if (inputValue === '') {
+                            setFormData({...formData, totalCapacity: inputValue});
+                            return;
+                          }
+                          
+                          // Only allow positive integers
+                          if (!/^[0-9]+$/.test(inputValue)) {
+                            return;
+                          }
+                          
+                          const numValue = parseInt(inputValue);
+                          
+                          // Validate minimum value
+                          if (numValue < 1) {
+                            console.warn('Minimum capacity is 1');
+                            setFormData({...formData, totalCapacity: '1'});
+                          } else {
+                            setFormData({...formData, totalCapacity: inputValue});
+                          }
+                        }}
                         required
-                        placeholder="Maximum number of people"
+                        placeholder="Minimum capacity is 1"
                         className="form-control-modern"
                       />
                     </div>
+                    <Form.Text className="text-muted">
+                      Capacity must be at least 1
+                    </Form.Text>
                   </Form.Group>
                 </div>
               </div>

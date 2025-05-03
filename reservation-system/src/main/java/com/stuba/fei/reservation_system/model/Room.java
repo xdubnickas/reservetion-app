@@ -3,6 +3,7 @@ package com.stuba.fei.reservation_system.model;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
+import jakarta.validation.constraints.Min;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -18,6 +19,8 @@ public class Room {
 
     private String name;
     private Integer floor;
+
+    @Min(value = 1, message = "Capacity must be at least 1")
     private Integer capacity;
 
     @JsonIgnoreProperties({"rooms"})

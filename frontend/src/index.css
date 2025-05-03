@@ -1,16 +1,47 @@
 body {
-    font-family: "Anek Devanagari-SemiBold", Helvetica;
-    color: #f7faf8;
-    background-color: #132342;
-    transition: background-color 0.5s ease, color 0.5s ease;
-  }
+  font-family: "Anek Devanagari-SemiBold", Helvetica;
+  color: #f7faf8;
+  background-color: #132342;
+  transition: background-color 0.5s ease, color 0.5s ease;
+}
 
 body.light {
-  color: #010b27;
-  background-color: #edf6fff3;
+color: #010b27; /* Deep Blue text for light mode */
+background-color: #edf6fff3; /* Very Light Cyan background for light mode */
 }
 
 body.dark {
-  color: #f7fafa;
-  background-color: #132342;
+color: #f7fafa; /* Light text for dark mode */
+background-color: #132342; /* Deep Blue background for dark mode */
+}
+
+/* Dark mode styles for rating component */
+body.dark .evt-rating-component {
+background-color: #263852;
+border-color: #3c4e6e;
+color: #ecf0f1;
+}
+
+body.dark .evt-rating-component .rating-stars {
+color: #f1c40f;
+}
+
+body.dark .evt-rating-component .rating-text,
+body.dark .evt-rating-component .rating-count {
+color: #bdc3c7;
+}
+
+body.dark .evt-rating-component .rating-input:not(:checked) ~ label {
+color: #4a6583;
+}
+
+body.dark .evt-rating-component .rating-input:checked ~ label {
+color: #f1c40f;
+}
+
+body.dark .evt-rating-component .rating-label:hover,
+body.dark .evt-rating-component .rating-label:hover ~ label,
+body.dark .evt-rating-component .rating-input:not(:checked) ~ label:hover,
+body.dark .evt-rating-component .rating-input:not(:checked) ~ label:hover ~ label {
+color: #f39c12;
 }

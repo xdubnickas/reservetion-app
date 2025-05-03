@@ -1,0 +1,125 @@
+/* EventOrganizerPage Styles */
+.organizer-dashboard {
+    padding-bottom: 40px;
+  }
+  
+  .dashboard-title {
+    color: #333;
+    font-weight: 700;
+    margin-bottom: 1.5rem;
+  }
+  
+  .organizer-stats-card {
+    background-color: #f8f9fa;
+    border-radius: 12px;
+    padding: 25px 20px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    border: 1px solid rgba(0, 0, 0, 0.05);
+  }
+  
+  .stat-item {
+    text-align: center;
+    padding: 10px;
+  }
+  
+  .stat-item h5 {
+    margin-bottom: 15px;
+    color: #555;
+    font-weight: 600;
+  }
+  
+  .stat-value {
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: #0d6efd;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .big-rating {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .star-rating {
+    display: inline-flex;
+    align-items: center;
+  }
+  
+  .rating-star {
+    color: #e0e0e0;
+    font-size: 1.8rem;
+    margin-right: 5px;
+  }
+  
+  .rating-star.filled {
+    color: #ffc107;
+  }
+  
+  .rating-star.half-filled {
+    color: #ffc107;
+  }
+  
+  .rating-value {
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: #555;
+  }
+  
+  /* Responsive adjustments */
+  @media (max-width: 767px) {
+    .organizer-stats-card {
+      padding: 15px;
+    }
+    
+    .stat-item {
+      margin-bottom: 15px;
+    }
+    
+    .stat-value {
+      font-size: 1.5rem;
+    }
+    
+    .rating-star {
+      font-size: 1.5rem;
+    }
+    
+    .rating-value {
+      font-size: 1.2rem;
+    }
+  }
+  
+  /* Dark Mode Styles */
+  .dark .dashboard-title {
+    color: #e6edf7;
+  }
+  
+  .dark .organizer-stats-card {
+    background-color: #1e2f4d;
+    border-color: #2a3c5a;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  }
+  
+  .dark .stat-item h5 {
+    color: #a4c2f4;
+  }
+  
+  .dark .stat-value {
+    color: #5a94e5;
+  }
+  
+  .dark .rating-star {
+    color: #344b6e;
+  }
+  
+  .dark .rating-star.filled,
+  .dark .rating-star.half-filled {
+    color: #ffc107;
+  }
+  
+  .dark .rating-value {
+    color: #d0e0f7;
+  }
+  

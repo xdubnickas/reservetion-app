@@ -48,6 +48,7 @@ public class SecurityConfig {
                         .requestMatchers(HttpMethod.GET, "/api/localities/*/events").permitAll() // Allow accessing locality events
                         .requestMatchers(HttpMethod.GET, "/api/localities/*").permitAll()
                         .requestMatchers(HttpMethod.GET, "/api/localities").permitAll()
+                        .requestMatchers(HttpMethod.GET, "/api/space-renters").permitAll() // Added space-renters endpoint
                         .requestMatchers("/api/auth/login", "/api/auth/register").permitAll()
                         .requestMatchers(HttpMethod.GET, "/uploaded-images/**").permitAll()  // Zmenené na GET pre obrázky
                         .requestMatchers(HttpMethod.POST, "/api/events").authenticated()
@@ -58,7 +59,6 @@ public class SecurityConfig {
                 .addFilterBefore(jwtAuthFilter, UsernamePasswordAuthenticationFilter.class);
 
         return http.build();
-
     }
 
     // CORS konfigurácia

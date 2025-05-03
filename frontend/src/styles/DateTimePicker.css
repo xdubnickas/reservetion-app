@@ -876,3 +876,186 @@
 }
 
 /* ...rest of existing styles... */
+
+/* Dark Mode Styles for DateTimePicker */
+.dark .datetime-picker-modern {
+  background: #1e2f4d;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+
+.dark .calendar-view {
+  background: #1e2f4d;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+}
+
+.dark .time-picker-view {
+  background: #1e2f4d;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+}
+
+.dark .react-calendar {
+  background: #1e2f4d;
+  color: #e6edf7;
+}
+
+.dark .react-calendar__navigation button {
+  color: #e6edf7;
+}
+
+.dark .react-calendar__navigation button:enabled:hover,
+.dark .react-calendar__navigation button:enabled:focus {
+  background-color: #2a3c5a;
+}
+
+.dark .react-calendar__month-view__weekdays {
+  color: #a4c2f4;
+}
+
+.dark .react-calendar__tile {
+  color: #e6edf7;
+}
+
+.dark .react-calendar__tile:enabled:hover,
+.dark .react-calendar__tile:enabled:focus {
+  background-color: #2a3c5a;
+}
+
+.dark .react-calendar__tile--active {
+  background: #5a94e5 !important;
+  color: white !important;
+}
+
+.dark .react-calendar__tile--now {
+  background: #344b6e !important;
+  color: white !important;
+}
+
+.dark .react-calendar__tile--disabled {
+  background-color: #1a2740 !important;
+  color: #5a6d88 !important;
+  text-decoration: line-through;
+  opacity: 0.6;
+  cursor: not-allowed !important;
+}
+
+.dark .react-calendar__tile--now.react-calendar__tile--disabled {
+  background-color: #1a2740 !important;
+  border: 1px dashed #344b6e;
+}
+
+.dark .selected-date {
+  background: #2a3c5a;
+  border-color: #344b6e;
+  color: #e6edf7;
+}
+
+.dark .change-date-btn {
+  background: #2a3c5a;
+  color: #5a94e5;
+  border-color: #5a94e5;
+}
+
+.dark .change-date-btn:hover {
+  background: #5a94e5;
+  color: white;
+}
+
+.dark .time-field label {
+  color: #a4c2f4;
+  padding: 4px 8px;
+  border-radius: 4px;
+  display: inline-block;
+}
+
+.dark .time-field {
+
+  background-color: #1a274000;
+
+}
+
+.dark .time-select {
+  background-color: #2a3c5a;
+  border-color: #344b6e;
+  color: #e6edf7;
+}
+
+.dark .time-select:disabled {
+  background-color: #1e2f4d;
+  color: #8095b5;
+}
+
+.dark .time-select option {
+  background-color: #2a3c5a;
+  color: #e6edf7;
+}
+
+.dark .time-select option.day-time {
+  background-color: #2a3c5a;
+  border-left-color: #ffd700;
+}
+
+.dark .time-select option.night-time {
+  background-color: #1e2f4d;
+  border-left-color: #5a94e5;
+  color: #a4c2f4;
+}
+
+.dark .time-select.day-time {
+  border-color: #ffd700;
+  background-color: #2a3c5a;
+}
+
+.dark .time-select.night-time {
+  border-color: #5a94e5;
+  background-color: #1e2f4d;
+}
+
+.dark .time-select option:disabled {
+  background-color: #1a2740;
+  color: #5a6d88;
+  text-decoration: line-through;
+}
+
+.dark .blocked-times {
+  background: rgba(220, 53, 69, 0.1);
+  border-color: rgba(220, 53, 69, 0.2);
+}
+
+.dark .blocked-times h6 {
+  color: #f8a0a8;
+}
+
+.dark .blocked-time-badge {
+  background: rgba(220, 53, 69, 0.15);
+  color: #f8a0a8;
+  border-color: rgba(220, 53, 69, 0.25);
+}
+
+.dark .time-summary {
+  background: #2a3c5a;
+  border-color: #344b6e;
+}
+
+.dark .duration {
+  color: #5a94e5;
+}
+
+.dark .time-range {
+  color: #c5d5eb;
+}
+
+.dark .text-danger {
+  color: #f8a0a8 !important;
+}
+
+.dark .text-muted {
+  color: #8095b5 !important;
+}
+
+.dark .react-calendar__navigation button:disabled {
+  background-color: transparent !important;
+}
+
+.dark .react-calendar__tile:disabled{
+  background-color: #bbc5d16b !important;
+}

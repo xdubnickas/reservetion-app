@@ -155,6 +155,7 @@ const SignUpPage = () => {
                             (validation.username.isValid ? 'is-valid' : 'is-invalid') : 
                             ''
                           }`}
+                          maxLength={30}
                         />
                         <ValidationFeedback 
                           validation={validation.username} 
@@ -178,6 +179,7 @@ const SignUpPage = () => {
                             (validation.email.isValid ? 'is-valid' : 'is-invalid') : 
                             ''
                           }`}
+                          maxLength={100}
                         />
                         <ValidationFeedback 
                           validation={validation.email} 
@@ -198,8 +200,18 @@ const SignUpPage = () => {
                           name="firstName"
                           value={formData.firstName}
                           onChange={handleInputChange}
+                          onBlur={() => handleBlur('firstName')}
                           required
-                          className="dark-mode-input"
+                          className={`dark-mode-input ${
+                            touchedFields.firstName ? 
+                            (validation.firstName.isValid ? 'is-valid' : 'is-invalid') : 
+                            ''
+                          }`}
+                          maxLength={50}
+                        />
+                        <ValidationFeedback 
+                          validation={validation.firstName} 
+                          showValidation={touchedFields.firstName}
                         />
                       </Form.Group>
                     </Col>
@@ -212,8 +224,18 @@ const SignUpPage = () => {
                           name="lastName"
                           value={formData.lastName}
                           onChange={handleInputChange}
+                          onBlur={() => handleBlur('lastName')}
                           required
-                          className="dark-mode-input"
+                          className={`dark-mode-input ${
+                            touchedFields.lastName ? 
+                            (validation.lastName.isValid ? 'is-valid' : 'is-invalid') : 
+                            ''
+                          }`}
+                          maxLength={50}
+                        />
+                        <ValidationFeedback 
+                          validation={validation.lastName} 
+                          showValidation={touchedFields.lastName}
                         />
                       </Form.Group>
                     </Col>
@@ -328,6 +350,7 @@ const SignUpPage = () => {
                             (validation.phone.isValid ? 'is-valid' : 'is-invalid') : 
                             ''
                           }`}
+                          maxLength={20}
                         />
                         <ValidationFeedback 
                           validation={validation.phone} 
@@ -354,6 +377,7 @@ const SignUpPage = () => {
                             (validation.companyName.isValid ? 'is-valid' : 'is-invalid') : 
                             ''
                           }`}
+                          maxLength={100}
                         />
                         {formData.userType === 'EVENT_ORGANIZER' &&
                           <ValidationFeedback 

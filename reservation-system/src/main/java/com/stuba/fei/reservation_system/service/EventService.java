@@ -367,21 +367,11 @@ public class EventService {
         // Find the nearest city to the given coordinates
         City nearestCity = findNearestCity(longitude, latitude);
         
-//        // Print information about the request location
-//        System.out.println("=== REQUEST LOCATION ===");
-//        System.out.printf("Coordinates: Lat=%.6f, Lon=%.6f\n", latitude, longitude);
-//        if (nearestCity != null) {
-//            System.out.printf("Nearest city: %s, %s (Distance: %.2f km)\n",
-//                nearestCity.getName(),
-//                nearestCity.getCountry(),
-//                calculateDistance(latitude, longitude, nearestCity.getLatitude(), nearestCity.getLongitude()));
-//        } else {
-//            System.out.println("No city found near the provided coordinates");
-//        }
-//        System.out.println("======================");
-        
         // Score each event
         for (Event event : upcomingEvents) {
+            // Update status before scoring
+            updateAndSaveEventStatus(event);
+            
             double score = 0.0;
             
             // 1. Check if event is in the same city (50%)
@@ -409,39 +399,6 @@ public class EventService {
             
             eventScores.put(event, score);
         }
-        
-//        // Print event scores for debugging
-//        System.out.println("=== EVENT SCORES ===");
-//        eventScores.forEach((event, score) -> {
-//            // Get city name if available
-//            String cityName = "No city";
-//            double eventLat = 0.0;
-//            double eventLon = 0.0;
-//
-//            if (event.getRooms() != null && !event.getRooms().isEmpty() &&
-//                event.getRooms().get(0).getLocality() != null &&
-//                event.getRooms().get(0).getLocality().getCity() != null) {
-//                cityName = event.getRooms().get(0).getLocality().getCity().getName();
-//
-//                if (event.getRooms().get(0).getLocality().getCity().getLatitude() != null &&
-//                    event.getRooms().get(0).getLocality().getCity().getLongitude() != null) {
-//                    eventLat = event.getRooms().get(0).getLocality().getCity().getLatitude();
-//                    eventLon = event.getRooms().get(0).getLocality().getCity().getLongitude();
-//                }
-//            }
-//
-//            // Enhanced logging with detailed information
-//            System.out.printf("Event ID: %d | Mesto: %s | Vzdialenosť: %.2f km | Cena: %.2f EUR | Kapacita: %d/%d | Skóre: %.2f\n",
-//                event.getId(),
-//                cityName,
-//                (eventLat != 0.0 && eventLon != 0.0) ? calculateDistance(latitude, longitude, eventLat, eventLon) : -1.0,
-//                event.getPrice() != null ? event.getPrice() : 0.0,
-//                event.getReservations() != null ? event.getReservations().size() : 0,
-//                event.getMaxCapacity(),
-//                score
-//            );
-//        });
-//        System.out.println("===================");
         
         // Sort events by score (descending) and take top 12
         return eventScores.entrySet().stream()
@@ -619,6 +576,9 @@ public class EventService {
         
         // Score each event
         for (Event event : nonReservedEvents) {
+            // Update status before scoring
+            updateAndSaveEventStatus(event);
+            
             double score = 0.0;
             
             // ========== USER PREFERENCES (60%) ==========
@@ -898,7 +858,7 @@ public class EventService {
      * @return List of active events with available capacity
      */
     private List<Event> getAvailableUpcomingEvents() {
-        // Get all upcoming events
+        // Get all upcoming events - already updates statuses
         List<Event> upcomingEvents = getUpcomingEvents();
         
         // Filter out FULL events

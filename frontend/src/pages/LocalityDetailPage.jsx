@@ -169,7 +169,7 @@ const LocalityDetailPage = () => {
                         <ListGroup>
                           {locality.rooms.map(room => (
                             <ListGroup.Item key={room.id} className="room-item">
-                              <div className="room-details">
+                              <div className="room-info">
                                 <div className="room-name">{room.name}</div>
                                 <div className="room-capacity">
                                   <FaUsers className="me-1 text-muted small" /> 

@@ -326,7 +326,6 @@ const EventList = () => {
     return formData.name && 
            formData.category && 
            formData.price !== undefined && 
-           formData.description &&
            selectedRooms.length > 0;
   };
 
@@ -932,7 +931,7 @@ const EventList = () => {
                 <div className="row g-4">
                   <div className="col-md-6">
                     <Form.Group className="mb-4">
-                      <Form.Label>Name</Form.Label>
+                      <Form.Label>Name <span className="text-danger">*</span></Form.Label>
                       <Form.Control
                         type="text"
                         value={formData.name}
@@ -957,7 +956,7 @@ const EventList = () => {
                     <div className="row">
                       <div className="col-6">
                         <Form.Group className="mb-4">
-                          <Form.Label>Category</Form.Label>
+                          <Form.Label>Category <span className="text-danger">*</span></Form.Label>
                           <Form.Select
                             value={formData.category}
                             onChange={(e) => setFormData({...formData, category: e.target.value})}
@@ -976,13 +975,37 @@ const EventList = () => {
                         <Form.Group className="mb-4">
                           <Form.Label>Price (€) <small className="text-muted">(0 = free)</small></Form.Label>
                           <Form.Control
-                            type="number"
-                            step="0.01"
-                            min="0"
+                            type="text"
                             value={formData.price}
-                            onChange={(e) => setFormData({...formData, price: e.target.value})}
+                            onChange={(e) => {
+                              const inputValue = e.target.value;
+                              
+                              // Allow empty input or valid numbers including leading zeros
+                              if (inputValue === '' || inputValue === '0') {
+                                setFormData({...formData, price: inputValue});
+                                return;
+                              }
+                              
+                              // Only allow numbers and decimal point
+                              if (!/^[0-9]*\.?[0-9]*$/.test(inputValue)) {
+                                return;
+                              }
+                              
+                              const numValue = parseFloat(inputValue);
+                              
+                              // Validate range
+                              if (numValue > 1000) {
+                                toast.warning('Maximum price is €1000');
+                                setFormData({...formData, price: '1000'});
+                              } else {
+                                setFormData({...formData, price: inputValue});
+                              }
+                            }}
                             placeholder="0"
                           />
+                          <Form.Text className="text-muted">
+                            Price range: €0 - €1000
+                          </Form.Text>
                         </Form.Group>
                       </div>
                     </div>
@@ -1149,6 +1172,7 @@ const EventList = () => {
                       }));
                     }}
                     excludedTimes={excludedTimes}
+                    disablePastDates={true}
                   />
                 </div>
               </div>

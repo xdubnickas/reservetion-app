@@ -88,6 +88,12 @@ const login = async (username, password) => {
       }
     }
     
+    // Dispatch custom event for login to notify components
+    const loginEvent = new CustomEvent('userLoggedIn', {
+      detail: { role: response.data.role }
+    });
+    window.dispatchEvent(loginEvent);
+    
     return response.data.role;
   }
 };
@@ -140,8 +146,7 @@ const authenticatedRequest = async (method, useAuth, url, data = null) => {
     }
   } catch (error) {
     if (useAuth && error.response?.status === 401) {
-      // Token expired, log the user out
-      logout(true);
+      //logout(true);
       
       // Throw a specific error with a message that can be displayed to the user
       const expiredError = new Error('Your session has expired. Please log in again.');

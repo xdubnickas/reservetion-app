@@ -1,10 +1,13 @@
 package com.stuba.fei.reservation_system.service;
 
+import com.stuba.fei.reservation_system.model.Event;
+import com.stuba.fei.reservation_system.model.EventStatus;
 import com.stuba.fei.reservation_system.model.Locality;
 import com.stuba.fei.reservation_system.model.Room;
 import com.stuba.fei.reservation_system.model.users.SpaceRenter;
 import com.stuba.fei.reservation_system.repository.RoomRepository;
 import com.stuba.fei.reservation_system.service.users.SpaceRenterService;
+import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -57,17 +60,30 @@ public class RoomService {
         return roomRepository.save(room);
     }
 
+    @Transactional
     public void deleteRoom(Long id, Long localityId) throws AccessDeniedException {
         Room room = roomRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("Room not found"));
 
         Locality locality = localityService.getLocalityById(localityId)
                 .orElseThrow(() -> new RuntimeException("Locality not found"));
-        
-        // Check if current user is the owner of the locality
+
+        // Overenie vlastníctva
         verifyRoomOwnership(locality);
 
+        // Premazanie väzieb s eventami a nastavenie INACTIVE
+        List<Event> affectedEvents = room.getEvents();
+        if (affectedEvents != null) {
+            for (Event event : affectedEvents) {
+                event.getRooms().remove(room);
+                event.setStatus(EventStatus.INACTIVE);
+            }
+        }
+
+        // Aktualizácia kapacity lokalít
         locality.setTotalCapacity(locality.getTotalCapacity() - room.getCapacity());
+
+        // Odstránenie miestnosti
         roomRepository.deleteById(id);
     }
     

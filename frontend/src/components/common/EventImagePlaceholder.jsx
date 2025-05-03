@@ -1,5 +1,5 @@
 import { getInitials, stringToColor } from '../../utils/imageUtils';
-import './EventImagePlaceholder.css';
+import '../../styles/EventImagePlaceholder.css';
 import PropTypes from 'prop-types';
 
 const EventImagePlaceholder = ({ name, className, icon }) => {

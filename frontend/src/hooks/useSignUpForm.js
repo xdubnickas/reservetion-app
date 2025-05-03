@@ -19,7 +19,9 @@ export const useSignUpForm = () => {
     confirmPassword: false,
     username: false,
     phone: false,
-    companyName: false
+    companyName: false,
+    firstName: false,
+    lastName: false
   });
 
   const [validation, setValidation] = useState({
@@ -28,7 +30,9 @@ export const useSignUpForm = () => {
     confirmPassword: { isValid: false, message: '' },
     username: { isValid: false, message: '' },
     phone: { isValid: true, message: '' },
-    companyName: { isValid: true, message: '' }
+    companyName: { isValid: true, message: '' },
+    firstName: { isValid: false, message: '' },
+    lastName: { isValid: false, message: '' }
   });
 
   useEffect(() => {
@@ -38,6 +42,8 @@ export const useSignUpForm = () => {
     validateField('username', formData.username);
     validateField('phone', formData.phone);
     validateField('companyName', formData.companyName);
+    validateField('firstName', formData.firstName);
+    validateField('lastName', formData.lastName);
   }, [formData]);
 
   const validateField = (fieldName, value) => {
@@ -46,16 +52,41 @@ export const useSignUpForm = () => {
 
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     const phoneRegex = /^[+]?[(]?[0-9]{3}[)]?[-\s.]?[0-9]{3}[-\s.]?[0-9]{4,6}$/;
+    // Updated regex to include Slovak characters and diacritical marks
+    const nameRegex = /^[\p{L}\s'-]+$/u;
+
+    // Define max lengths for each field
+    const maxLengths = {
+      email: 100,
+      password: 50,
+      confirmPassword: 50,
+      username: 30,
+      phone: 20,
+      companyName: 100,
+      firstName: 50,
+      lastName: 50
+    };
+
+    // First check max length
+    if (value.length > maxLengths[fieldName]) {
+      return setValidation(prev => ({
+        ...prev,
+        [fieldName]: { 
+          isValid: false, 
+          message: `Maximum ${maxLengths[fieldName]} characters allowed` 
+        }
+      }));
+    }
 
     switch (fieldName) {
       case 'email':
-        isValid = emailRegex.test(value);
+        isValid = emailRegex.test(value) && value.length <= maxLengths.email;
         message = isValid ? 'Valid email' : 'Invalid email format';
         break;
 
       case 'password':
-        isValid = value.length >= 5;
-        message = isValid ? 'Password is valid' : 'Password must be at least 5 characters';
+        isValid = value.length >= 5 && value.length <= maxLengths.password;
+        message = isValid ? 'Password is valid' : 'Password must be between 5 and 50 characters';
         break;
 
       case 'confirmPassword':
@@ -64,8 +95,8 @@ export const useSignUpForm = () => {
         break;
 
       case 'username':
-        isValid = value.length >= 3;
-        message = isValid ? 'Username is valid' : 'Username must be at least 3 characters';
+        isValid = value.length >= 3 && value.length <= maxLengths.username;
+        message = isValid ? 'Username is valid' : 'Username must be between 3 and 30 characters';
         break;
 
       case 'phone':
@@ -75,12 +106,22 @@ export const useSignUpForm = () => {
 
       case 'companyName':
         if (formData.userType === 'EVENT_ORGANIZER') {
-          isValid = value.length >= 2;
-          message = isValid ? 'Valid company name' : 'Company name is required';
+          isValid = value.length >= 2 && value.length <= maxLengths.companyName;
+          message = isValid ? 'Valid company name' : `Company name must be between 2 and ${maxLengths.companyName} characters`;
         } else {
           isValid = true;
           message = '';
         }
+        break;
+        
+      case 'firstName':
+        isValid = nameRegex.test(value) && value.length > 0 && value.length <= maxLengths.firstName;
+        message = isValid ? 'Valid name' : 'Name may contain letters (including accents), spaces, hyphens or apostrophes';
+        break;
+        
+      case 'lastName':
+        isValid = nameRegex.test(value) && value.length > 0 && value.length <= maxLengths.lastName;
+        message = isValid ? 'Valid name' : 'Name may contain letters (including accents), spaces, hyphens or apostrophes';
         break;
 
       default:
@@ -115,7 +156,9 @@ export const useSignUpForm = () => {
     const basicFieldsValid = validation.email.isValid && 
                            validation.password.isValid && 
                            validation.confirmPassword.isValid && 
-                           validation.username.isValid;
+                           validation.username.isValid &&
+                           validation.firstName.isValid &&
+                           validation.lastName.isValid;
 
     if (!basicFieldsValid) return false;
 

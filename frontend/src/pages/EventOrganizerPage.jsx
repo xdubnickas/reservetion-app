@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import EventList from '../components/common/EventList';
 import { eventService } from '../services/eventService';
 import { BsStarFill, BsStarHalf, BsStar, BsCalendarEvent, BsCalendarCheck } from 'react-icons/bs';
+import '../styles/EventOrganizerPage.css'; // Import new CSS file
 
 const EventOrganizerPage = () => {
   const [organizerStats, setOrganizerStats] = useState({
@@ -68,41 +69,41 @@ const EventOrganizerPage = () => {
   };
 
   return (
-    <div className="container mt-4">
-      <h1>Event Organizer Dashboard</h1>
+    <div className="container mt-4 organizer-dashboard">
+      <h1 className="dashboard-title">Event Organizer Dashboard</h1>
       
-      {organizerStats.averageRating > 0 && (
-        <div className="organizer-stats-card mt-3 mb-4">
-          <div className="row align-items-center">
-            <div className="col-md-4">
-              <div className="stat-item">
-                <h5>Your Rating</h5>
-                <div className="big-rating">
-                  {renderStarRating(organizerStats.averageRating)}
-                </div>
+      <div className="organizer-stats-card mt-3 mb-4">
+        <div className="row align-items-center">
+          <div className="col-md-4">
+            <div className="stat-item">
+              <h5>Your Rating</h5>
+              <div className="big-rating">
+                {organizerStats.averageRating > 0 
+                  ? renderStarRating(organizerStats.averageRating)
+                  : <span>No ratings yet</span>}
               </div>
             </div>
-            <div className="col-md-4">
-              <div className="stat-item">
-                <h5>Total Events</h5>
-                <div className="stat-value">
-                  <BsCalendarEvent className="me-2" />
-                  {organizerStats.totalEvents}
-                </div>
+          </div>
+          <div className="col-md-4">
+            <div className="stat-item">
+              <h5>Total Events</h5>
+              <div className="stat-value">
+                <BsCalendarEvent className="me-2" />
+                {organizerStats.totalEvents}
               </div>
             </div>
-            <div className="col-md-4">
-              <div className="stat-item">
-                <h5>Active Events</h5>
-                <div className="stat-value">
-                  <BsCalendarCheck className="me-2" />
-                  {organizerStats.activeEvents}
-                </div>
+          </div>
+          <div className="col-md-4">
+            <div className="stat-item">
+              <h5>Active Events</h5>
+              <div className="stat-value">
+                <BsCalendarCheck className="me-2" />
+                {organizerStats.activeEvents}
               </div>
             </div>
           </div>
         </div>
-      )}
+      </div>
       
       <div className="row mt-4">
         <div className="col-12">

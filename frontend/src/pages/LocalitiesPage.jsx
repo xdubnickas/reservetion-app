@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Card, Container, Row, Col, Button, Form, InputGroup, Badge } from 'react-bootstrap';
-import { BsSearch, BsGeoAlt, BsBuilding, BsPeople, BsDoorOpen, BsArrowRight } from 'react-icons/bs';
+import { BsSearch, BsGeoAlt, BsBuilding, BsPeople, BsDoorOpen, BsArrowRight, BsFilter, BsPerson } from 'react-icons/bs';
 import { useNavigate } from 'react-router-dom';
 import { localityService } from '../services/localityService';
 import '../styles/LocalitiesPage.css';
@@ -12,6 +12,8 @@ const LocalitiesPage = () => {
   const [searchTerm, setSearchTerm] = useState('');
   const [cities, setCities] = useState([]);
   const [selectedCity, setSelectedCity] = useState('');
+  const [spaceRenters, setSpaceRenters] = useState([]);
+  const [selectedSpaceRenter, setSelectedSpaceRenter] = useState('');
   const [totalLocalities, setTotalLocalities] = useState(0);
   const navigate = useNavigate();
 
@@ -21,11 +23,13 @@ const LocalitiesPage = () => {
         setLoading(true);
         const locData = await localityService.getAllLocalities();
         const cityData = await localityService.getAllCities();
+        const renterData = await localityService.getAllSpaceRenters();
         
         setLocalities(locData);
         setFilteredLocalities(locData);
         setTotalLocalities(locData.length);
         setCities(cityData);
+        setSpaceRenters(renterData);
       } catch (error) {
         console.error('Error fetching localities:', error);
       } finally {
@@ -46,6 +50,13 @@ const LocalitiesPage = () => {
       );
     }
     
+    // Apply space renter filter
+    if (selectedSpaceRenter) {
+      filtered = filtered.filter(locality => 
+        locality.spaceRenter && locality.spaceRenter.id.toString() === selectedSpaceRenter
+      );
+    }
+    
     // Apply search filter
     if (searchTerm) {
       const term = searchTerm.toLowerCase();
@@ -56,7 +67,7 @@ const LocalitiesPage = () => {
     }
     
     setFilteredLocalities(filtered);
-  }, [searchTerm, selectedCity, localities]);
+  }, [searchTerm, selectedCity, selectedSpaceRenter, localities]);
 
   const handleSearchChange = (e) => {
     setSearchTerm(e.target.value);
@@ -66,9 +77,14 @@ const LocalitiesPage = () => {
     setSelectedCity(e.target.value);
   };
 
+  const handleSpaceRenterChange = (e) => {
+    setSelectedSpaceRenter(e.target.value);
+  };
+
   const resetFilters = () => {
     setSearchTerm('');
     setSelectedCity('');
+    setSelectedSpaceRenter('');
   };
 
   const navigateToLocalityDetail = (id) => {
@@ -90,114 +106,165 @@ const LocalitiesPage = () => {
 
   return (
     <Container className="localities-page py-4">
-      <div className="localities-header">
-        <h1>Explore Amazing Venues</h1>
-        <p className="text-muted">Discover the perfect space for your next event</p>
-      </div>
+      <Row className="justify-content-center mb-5">
+        <Col lg={10}>
+          <div className="text-center localities-header">
+            <h1>Explore Amazing Venues</h1>
+            <p className="lead">
+              Discover the perfect space for your next event
+            </p>
+          </div>
+        </Col>
+      </Row>
       
-      <div className="filter-section mb-4">
-        <div className="filter-header">
-          <h4>Find Your Ideal Venue</h4>
-          <span className="result-count">{filteredLocalities.length} {filteredLocalities.length === 1 ? 'venue' : 'venues'} found</span>
-        </div>
-        <Row className="g-3">
-          <Col lg={6}>
-            <InputGroup className="search-input">
-              <InputGroup.Text>
-                <BsSearch />
-              </InputGroup.Text>
-              <Form.Control 
-                placeholder="Search by name or address..." 
-                value={searchTerm}
-                onChange={handleSearchChange}
-              />
-            </InputGroup>
-          </Col>
-          <Col lg={4}>
-            <Form.Select 
-              value={selectedCity}
-              onChange={handleCityChange}
-              className="city-select"
-            >
-              <option value="">All Cities</option>
-              {cities.map((city, index) => (
-                <option key={index} value={city}>{city}</option>
-              ))}
-            </Form.Select>
-          </Col>
-          <Col lg={2}>
-            <Button 
-              variant="outline-secondary" 
-              onClick={resetFilters}
-              className="w-100 reset-btn"
-              disabled={!searchTerm && !selectedCity}
-            >
-              Reset Filters
-            </Button>
-          </Col>
-        </Row>
-      </div>
+      <Card className="filter-section mb-4">
+        <Card.Body>
+          <div className="filter-header">
+            <h4><BsFilter className="me-2" />Find Your Ideal Venue</h4>
+            <Badge bg="primary" className="result-badge">
+              {filteredLocalities.length} {filteredLocalities.length === 1 ? 'venue' : 'venues'} found
+            </Badge>
+          </div>
+          <Row className="g-3 mt-2">
+            <Col lg={3}>
+              <InputGroup>
+                <InputGroup.Text>
+                  <BsSearch />
+                </InputGroup.Text>
+                <Form.Control 
+                  placeholder="Search by name or address..." 
+                  value={searchTerm}
+                  onChange={handleSearchChange}
+                  className="search-field"
+                />
+              </InputGroup>
+            </Col>
+            <Col lg={3}>
+              <InputGroup>
+                <InputGroup.Text>
+                  <BsBuilding />
+                </InputGroup.Text>
+                <Form.Select 
+                  value={selectedCity}
+                  onChange={handleCityChange}
+                >
+                  <option value="">All Cities</option>
+                  {cities.map((city, index) => (
+                    <option key={index} value={city}>{city}</option>
+                  ))}
+                </Form.Select>
+              </InputGroup>
+            </Col>
+            <Col lg={3}>
+              <InputGroup>
+                <InputGroup.Text>
+                  <BsPerson />
+                </InputGroup.Text>
+                <Form.Select 
+                  value={selectedSpaceRenter}
+                  onChange={handleSpaceRenterChange}
+                >
+                  <option value="">All Space Renters</option>
+                  {spaceRenters.map((renter) => (
+                    <option key={renter.id} value={renter.id}>
+                      {renter.firstName} {renter.lastName}
+                    </option>
+                  ))}
+                </Form.Select>
+              </InputGroup>
+            </Col>
+            <Col lg={3}>
+              <Button 
+                variant="outline-secondary" 
+                onClick={resetFilters}
+                className="w-100 reset-btn"
+                disabled={!searchTerm && !selectedCity && !selectedSpaceRenter}
+              >
+                Reset Filters
+              </Button>
+            </Col>
+          </Row>
+        </Card.Body>
+      </Card>
       
       {filteredLocalities.length === 0 ? (
-        <div className="no-results">
-          <div className="no-results-content">
-            <BsSearch size={40} className="mb-3" />
+        <Card className="no-results text-center">
+          <Card.Body className="py-5">
+            <BsSearch size={40} className="mb-3 text-muted" />
             <h3>No venues found</h3>
-            <p>Try adjusting your search criteria or explore other cities</p>
+            <p className="text-muted">Try adjusting your search criteria or explore other cities</p>
             <Button variant="primary" onClick={resetFilters}>Reset Filters</Button>
-          </div>
-        </div>
+          </Card.Body>
+        </Card>
       ) : (
-        <Row className="localities-grid">
+        <Row className="localities-grid g-4">
           {filteredLocalities.map(locality => (
-            <Col key={locality.id} md={6} lg={4} className="mb-4">
+            <Col key={locality.id} md={6} lg={4}>
               <Card 
-                className="locality-card" 
+                className="locality-card h-100" 
                 onClick={() => navigateToLocalityDetail(locality.id)}
               >
-                <div className="locality-card-header">
-                  <h3>{locality.name}</h3>
-                  <Badge bg="info" className="city-badge">
-                    {locality.city.name}
-                  </Badge>
-                </div>
-                <Card.Body>
-                  <div className="locality-details">
-                    <div className="detail-item">
-                      <BsGeoAlt className="detail-icon" />
-                      <span className="detail-text">{locality.address}</span>
+                <Card.Header className="locality-card-header">
+                  <div className="d-flex justify-content-between align-items-center">
+                    <h3 className="locality-name">{locality.name}</h3>
+                    <Badge bg="primary" pill className="city-badge">
+                      {locality.city.name}
+                    </Badge>
+                  </div>
+                </Card.Header>
+                
+                <Card.Body className="locality-card-body">
+                  <div className="locality-info-grid">
+                    <div className="locality-info-item">
+                      <BsGeoAlt className="locality-info-icon" />
+                      <div>
+                        <h5>Address</h5>
+                        <p>{locality.address}</p>
+                      </div>
                     </div>
-                    <div className="detail-item">
-                      <BsBuilding className="detail-icon" />
-                      <span className="detail-text">{locality.city.country}</span>
+                    
+                    <div className="locality-info-item">
+                      <BsBuilding className="locality-info-icon" />
+                      <div>
+                        <h5>Country</h5>
+                        <p>{locality.city.country}</p>
+                      </div>
                     </div>
-                    <div className="detail-item">
-                      <BsPeople className="detail-icon" />
-                      <span className="detail-text">Total Capacity: <strong>{locality.totalCapacity}</strong> people</span>
+                    
+                    <div className="locality-info-item">
+                      <BsPeople className="locality-info-icon" />
+                      <div>
+                        <h5>Total Capacity</h5>
+                        <p><strong>{locality.totalCapacity}</strong> people</p>
+                      </div>
                     </div>
-                    <div className="detail-item">
-                      <BsDoorOpen className="detail-icon" />
-                      <span className="detail-text">
-                        {locality.rooms?.length || 0} {locality.rooms?.length === 1 ? 'room' : 'rooms'} available
-                      </span>
+                    
+                    <div className="locality-info-item">
+                      <BsDoorOpen className="locality-info-icon" />
+                      <div>
+                        <h5>Rooms Available</h5>
+                        <p>
+                          {locality.rooms?.length || 0} {locality.rooms?.length === 1 ? 'room' : 'rooms'}
+                        </p>
+                      </div>
                     </div>
                   </div>
                   
                   {locality.rooms && locality.rooms.length > 0 && (
                     <div className="rooms-preview">
-                      <h6>Featured Rooms:</h6>
+                      <h5 className="rooms-title">Featured Rooms:</h5>
                       <ul className="rooms-list">
                         {locality.rooms.slice(0, 2).map(room => (
-                          <li key={room.id} className="room-item">
+                          <li key={room.id} className="rooms-list-item">
                             <span className="room-name">{room.name}</span>
-                            <span className="room-capacity">
-                              <BsPeople size={14} className="me-1" />
-                              {room.capacity}
-                            </span>
+                            <span className="room-capacity-spacer"></span>
+                            <Badge bg="light" text="dark" className="room-capacity">
+                              <BsPeople className="me-1" /> {room.capacity}
+                            </Badge>
                           </li>
                         ))}
                         {locality.rooms.length > 2 && (
-                          <li className="room-item more-rooms">
+                          <li className="rooms-list-item more-rooms">
                             +{locality.rooms.length - 2} more rooms
                           </li>
                         )}
@@ -205,7 +272,8 @@ const LocalitiesPage = () => {
                     </div>
                   )}
                 </Card.Body>
-                <div className="card-footer">
+                
+                <Card.Footer className="locality-card-footer">
                   <Button 
                     variant="primary" 
                     className="view-details-btn"
@@ -216,7 +284,7 @@ const LocalitiesPage = () => {
                   >
                     View Details <BsArrowRight className="ms-2" />
                   </Button>
-                </div>
+                </Card.Footer>
               </Card>
             </Col>
           ))}

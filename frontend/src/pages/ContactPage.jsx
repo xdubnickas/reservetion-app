@@ -1,58 +1,14 @@
-import React, { useState } from 'react';
-import { Container, Row, Col, Form, Button, Card } from 'react-bootstrap';
+import React from 'react';
+import { Container, Row, Col, Card } from 'react-bootstrap';
 import { BsEnvelope, BsGeoAlt, BsPhone, BsBuilding, BsClock } from 'react-icons/bs';
-import { toast } from 'react-toastify';
+import { FaFacebook, FaTwitter, FaInstagram, FaLinkedin } from 'react-icons/fa';
 import '../styles/ContactPage.css';
 
 const ContactPage = () => {
-  const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    subject: '',
-    message: ''
-  });
-  
-  const [validated, setValidated] = useState(false);
-  const [sending, setSending] = useState(false);
-
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setFormData({
-      ...formData,
-      [name]: value
-    });
-  };
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    const form = e.currentTarget;
-    
-    if (form.checkValidity() === false) {
-      e.stopPropagation();
-      setValidated(true);
-      return;
-    }
-    
-    setSending(true);
-    
-    // Simulate sending the message
-    setTimeout(() => {
-      toast.success('Your message has been sent successfully! We will get back to you soon.');
-      setFormData({
-        name: '',
-        email: '',
-        subject: '',
-        message: ''
-      });
-      setValidated(false);
-      setSending(false);
-    }, 1500);
-  };
-
   return (
     <Container className="contact-page py-5">
       <Row className="justify-content-center mb-5">
-        <Col md={10} lg={8}>
+        <Col md={10}>
           <div className="text-center contact-header">
             <h1>Contact Us</h1>
             <p className="lead">
@@ -63,11 +19,11 @@ const ContactPage = () => {
         </Col>
       </Row>
       
-      <Row className="justify-content-center g-4">
-        <Col lg={5} md={6}>
+      <Row className="justify-content-center g-4 mb-5">
+        <Col lg={4} md={6}>
           <Card className="contact-info-card h-100">
             <Card.Body>
-              <h3 className="mb-4">Get in Touch</h3>
+              <h3 className="mb-4">Contact Information</h3>
               
               <div className="contact-info-item">
                 <BsEnvelope className="contact-icon" />
@@ -89,9 +45,17 @@ const ContactPage = () => {
                 <BsGeoAlt className="contact-icon" />
                 <div>
                   <h5>Address</h5>
-                  <p>Námestie Slobody 17<br />Bratislava, 81245<br />Slovakia</p>
+                  <p>Vymyslena 17<br />Bratislava, 81245<br />Slovakia</p>
                 </div>
               </div>
+            </Card.Body>
+          </Card>
+        </Col>
+        
+        <Col lg={4} md={6}>
+          <Card className="contact-info-card h-100">
+            <Card.Body>
+              <h3 className="mb-4">Office Details</h3>
               
               <div className="contact-info-item">
                 <BsBuilding className="contact-icon" />
@@ -112,91 +76,41 @@ const ContactPage = () => {
           </Card>
         </Col>
         
-        <Col lg={7} md={6}>
-          <Card className="contact-form-card h-100">
+        <Col lg={4} md={12}>
+          <Card className="contact-info-card h-100">
             <Card.Body>
-              <h3 className="mb-4">Send us a Message</h3>
+              <h3 className="mb-4">Connect With Us</h3>
+              <p className="mb-4">Follow us on social media for the latest updates, events, and promotions.</p>
               
-              <Form noValidate validated={validated} onSubmit={handleSubmit}>
-                <Form.Group className="mb-3" controlId="contactName">
-                  <Form.Label>Your Name</Form.Label>
-                  <Form.Control
-                    type="text"
-                    name="name"
-                    value={formData.name}
-                    onChange={handleChange}
-                    required
-                    placeholder="Enter your name"
-                  />
-                  <Form.Control.Feedback type="invalid">
-                    Please provide your name.
-                  </Form.Control.Feedback>
-                </Form.Group>
-                
-                <Form.Group className="mb-3" controlId="contactEmail">
-                  <Form.Label>Email Address</Form.Label>
-                  <Form.Control
-                    type="email"
-                    name="email"
-                    value={formData.email}
-                    onChange={handleChange}
-                    required
-                    placeholder="Enter your email"
-                  />
-                  <Form.Control.Feedback type="invalid">
-                    Please provide a valid email address.
-                  </Form.Control.Feedback>
-                </Form.Group>
-                
-                <Form.Group className="mb-3" controlId="contactSubject">
-                  <Form.Label>Subject</Form.Label>
-                  <Form.Control
-                    type="text"
-                    name="subject"
-                    value={formData.subject}
-                    onChange={handleChange}
-                    required
-                    placeholder="What is this regarding?"
-                  />
-                  <Form.Control.Feedback type="invalid">
-                    Please provide a subject.
-                  </Form.Control.Feedback>
-                </Form.Group>
-                
-                <Form.Group className="mb-4" controlId="contactMessage">
-                  <Form.Label>Message</Form.Label>
-                  <Form.Control
-                    as="textarea"
-                    rows={5}
-                    name="message"
-                    value={formData.message}
-                    onChange={handleChange}
-                    required
-                    placeholder="Tell us how we can help you..."
-                  />
-                  <Form.Control.Feedback type="invalid">
-                    Please provide a message.
-                  </Form.Control.Feedback>
-                </Form.Group>
-                
-                <div className="d-grid">
-                  <Button 
-                    variant="primary" 
-                    type="submit"
-                    disabled={sending}
-                    className="send-message-btn"
-                  >
-                    {sending ? 'Sending...' : 'Send Message'}
-                  </Button>
-                </div>
-              </Form>
+              <div className="social-media-container">
+                <a href="#" className="social-icon-link">
+                  <FaFacebook className="social-icon facebook" />
+                  <span>Facebook</span>
+                </a>
+                <a href="#" className="social-icon-link">
+                  <FaTwitter className="social-icon twitter" />
+                  <span>Twitter</span>
+                </a>
+                <a href="#" className="social-icon-link">
+                  <FaInstagram className="social-icon instagram" />
+                  <span>Instagram</span>
+                </a>
+                <a href="#" className="social-icon-link">
+                  <FaLinkedin className="social-icon linkedin" />
+                  <span>LinkedIn</span>
+                </a>
+              </div>
+              
+              <div className="mt-4">
+                <p className="text-muted">For customer support, please email us at <a href="mailto:support@reservo.com">support@reservo.com</a></p>
+              </div>
             </Card.Body>
           </Card>
         </Col>
       </Row>
       
-      <Row className="justify-content-center mt-5">
-        <Col md={10}>
+      <Row className="justify-content-center">
+        <Col md={12}>
           <div className="map-container">
             <h3 className="text-center mb-4">Our Location</h3>
             <div className="google-map-embed">

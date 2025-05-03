@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import Calendar from 'react-calendar';
 import 'react-calendar/dist/Calendar.css';
-import './DateTimePicker.css';
+import '../../styles/DateTimePicker.css';
 
 const CustomDateTimePicker = ({ 
   selectedDate,
@@ -10,7 +10,8 @@ const CustomDateTimePicker = ({
   duration,
   onDateTimeChange,
   onDurationChange,
-  excludedTimes = [] // pole obsadených časov vo formáte ["10:00-11:00", "14:00-15:30"]
+  excludedTimes = [],
+  disablePastDates = false // Add this prop to control date disabling
 }) => {
   const [date, setDate] = useState(selectedDate ? new Date(selectedDate) : null);
   const [timeView, setTimeView] = useState(Boolean(selectedTime)); // Ak máme selectedTime, začneme v time view
@@ -29,6 +30,22 @@ const CustomDateTimePicker = ({
   };
 
   const [endTime, setEndTime] = useState(calculateInitialEndTime());
+
+  // Calculate tomorrow's date (no hours, minutes, seconds)
+  const getTomorrow = () => {
+    const tomorrow = new Date();
+    tomorrow.setDate(tomorrow.getDate() + 1);
+    tomorrow.setHours(0, 0, 0, 0);
+    return tomorrow;
+  };
+
+  // Calculate minimum allowed date based on disablePastDates prop
+  const getMinDate = () => {
+    if (disablePastDates) {
+      return getTomorrow(); // Return tomorrow if we should disable today
+    }
+    return new Date(); // Otherwise return today
+  };
 
   // Enhanced function to check if a time range overlaps with excluded times
   const isTimeRangeOverlapping = (start, end) => {
@@ -219,6 +236,18 @@ const CustomDateTimePicker = ({
     return timeString; // Vrátime čas v pôvodnom formáte HH:mm
   };
 
+  // Update tileDisabled to explicitly disable today
+  const tileDisabled = ({ date }) => {
+    if (disablePastDates) {
+      const today = new Date();
+      today.setHours(0, 0, 0, 0);
+      
+      // Disable if date is today
+      return date.getTime() === today.getTime();
+    }
+    return false;
+  };
+
   // Update states when selectedTime changes (for editing)
   useEffect(() => {
     if (selectedTime) {
@@ -249,7 +278,8 @@ const CustomDateTimePicker = ({
           <Calendar
             onChange={handleDateSelect}
             value={date}
-            minDate={new Date()}
+            minDate={getMinDate()}
+            tileDisabled={tileDisabled}
             className="modern-calendar"
             formatShortWeekday={(locale, date) => 
               ['Su', 'Mo', 'Tu', 'We', 'Th', 'Fr', 'Sa'][date.getDay()]
@@ -388,7 +418,8 @@ CustomDateTimePicker.propTypes = {
   excludedTimes: PropTypes.arrayOf(PropTypes.oneOfType([
     PropTypes.string,
     PropTypes.arrayOf(PropTypes.string)
-  ]))
+  ])),
+  disablePastDates: PropTypes.bool // Add this to PropTypes
 };
 
 export default CustomDateTimePicker;

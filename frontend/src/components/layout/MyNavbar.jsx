@@ -94,6 +94,13 @@ const MyNavbar = () => {
 
   const handleLoginSubmit = async (e) => {
     e.preventDefault();
+    
+    // Check if fields are empty
+    if (!loginData.username.trim() || !loginData.password.trim()) {
+      setLoginError('Please fill in both username and password fields');
+      return;
+    }
+    
     try {
       const role = await login(loginData.username, loginData.password);
       setShowLogin(false);

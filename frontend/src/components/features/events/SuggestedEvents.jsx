@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
-import { Card, Container, Row, Col, Carousel } from 'react-bootstrap';
-import { FaMapMarkerAlt, FaRegClock, FaRegCalendarAlt } from 'react-icons/fa';
+import { Card, Container, Row, Col, Carousel, Button, Spinner } from 'react-bootstrap';
+import { FaMapMarkerAlt, FaRegClock, FaRegCalendarAlt, FaSearch } from 'react-icons/fa';
 import moment from 'moment';
 import './SuggestedEvents.css';
 import { eventService } from '../../../services/eventService';
@@ -19,6 +19,31 @@ const SuggestedEvents = () => {
   const [coordinates, setCoordinates] = useState({ longitude: null, latitude: null });
   const [geoLocationAttempted, setGeoLocationAttempted] = useState(false);
   const [usingDefaultCoordinates, setUsingDefaultCoordinates] = useState(false);
+  const [refreshTrigger, setRefreshTrigger] = useState(0); // Added to trigger refresh
+
+  // Listen for login and logout events
+  useEffect(() => {
+    const handleAuthEvent = () => {
+      console.log("Auth event detected, refreshing suggested events");
+      // Reset states to trigger a full refresh
+      setEvents([]);
+      setLoading(true);
+      setGeoLocationAttempted(false);
+      setCoordinates({ longitude: null, latitude: null });
+      // Increment refreshTrigger to force location detection and fetch
+      setRefreshTrigger(prev => prev + 1);
+    };
+
+    // Add event listeners
+    window.addEventListener('userLoggedIn', handleAuthEvent);
+    window.addEventListener('userLoggedOut', handleAuthEvent);
+
+    return () => {
+      // Clean up event listeners
+      window.removeEventListener('userLoggedIn', handleAuthEvent);
+      window.removeEventListener('userLoggedOut', handleAuthEvent);
+    };
+  }, []);
 
   // Get user's current location
   useEffect(() => {
@@ -65,7 +90,7 @@ const SuggestedEvents = () => {
       setUsingDefaultCoordinates(true);
       setGeoLocationAttempted(true);
     }
-  }, []);
+  }, [refreshTrigger]); // Added refreshTrigger as dependency
 
   // Fetch events when coordinates are available
   useEffect(() => {
@@ -109,8 +134,40 @@ const SuggestedEvents = () => {
     navigate(`/event/${eventId}`);
   };
 
-  if (loading) return <p>Loading...</p>;
+  if (loading) return (
+    <Container className="d-flex justify-content-center align-items-center my-5">
+      <Spinner animation="border" role="status" variant="primary">
+        <span className="visually-hidden">Loading...</span>
+      </Spinner>
+    </Container>
+  );
   if (error) return <p>{error}</p>;
+
+  // Add empty state handler
+  if (events.length === 0) {
+    return (
+      <Container className="suggested-events-container mt-4">
+        <h2 className="mb-4 text-center">Suggested Events</h2>
+        {usingDefaultCoordinates && (
+          <div className="alert alert-info text-center mb-3">
+            <small>Using default location (Bratislava). Enable location services for personalized recommendations.</small>
+          </div>
+        )}
+        <div className="empty-events-container text-center p-5">
+          <div className="empty-events-icon mb-3">
+            <FaSearch size={50} opacity={0.5} />
+          </div>
+          <h3>No events found nearby</h3>
+          <p className="text-muted">We couldn't find any suggested events in your area at the moment.</p>
+          <div className="mt-4">
+            <Button variant="primary" onClick={() => navigate('/events')}>
+              Browse All Events
+            </Button>
+          </div>
+        </div>
+      </Container>
+    );
+  }
 
   return (
     <Container className="suggested-events-container mt-4">

@@ -441,3 +441,128 @@
     height: 240px;
   }
 }
+.dark .event-detail-availability-title {
+  color: #e1e5e9;
+}
+
+
+/* Dark Mode Styles */
+.dark .event-detail-back-button {
+  color: #a4c2f4;
+  border-color: #a4c2f4;
+}
+
+.dark .event-detail-back-button:hover {
+  background-color: #2c4372;
+  color: #ffffff;
+}
+
+.dark .event-detail-hero {
+  background-color: #1e2f4d;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+}
+
+.dark .event-detail-hero-details-col,
+.dark .event-detail-hero-image-col {
+  background-color: #1e2f4d;
+}
+
+.dark .event-detail-hero-image-placeholder {
+  background-color: #2a3c5a;
+}
+
+.dark .event-detail-title {
+  color: #e6edf7;
+}
+
+.dark .event-detail-info-item {
+  background-color: #2a3c5a;
+}
+
+.dark .event-detail-info-item:hover {
+  background-color: #344b6e;
+}
+
+.dark .event-detail-info-date, 
+.dark .event-detail-info-time, 
+.dark .event-detail-info-location, 
+.dark .event-detail-info-capacity {
+  color: #d0e0f7;
+}
+
+.dark .event-detail-reserve-button {
+  background-color: #3a7bd5;
+  border-color: #3a7bd5;
+}
+
+.dark .event-detail-reserve-button:hover,
+.dark .event-detail-reserve-button:focus {
+  background-color: #5a94e5;
+  border-color: #5a94e5;
+}
+
+.dark .event-detail-reservation-note {
+  color: #a4c2f4;
+}
+
+.dark .event-detail-section-title {
+  color: #e6edf7;
+}
+
+.dark .event-detail-description-card,
+.dark .event-detail-organizer-card,
+.dark .event-detail-venue-card {
+  background-color: #1e2f4d;
+  border: 1px solid #2a3c5a;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+.dark .card-header {
+  background-color: #2a3c5a !important;
+  border-color: #344b6e;
+}
+
+.dark .event-detail-description-header {
+  background-color: #2a3c5a;
+  border-color: #344b6e;
+}
+
+.dark .event-detail-description {
+  color: #c5d5eb;
+}
+
+.dark .event-detail-venue-info-value {
+  color: #d0e0f7;
+}
+
+.dark .event-detail-venue-info-label {
+  color: #a4c2f4;
+}
+
+.dark .event-detail-availability-section {
+  background-color: #2a3c5a;
+}
+
+.dark .event-detail-venue-info-item {
+  border-bottom-color: rgba(164, 194, 244, 0.15);
+}
+
+.dark .event-detail-contact-section {
+  border-top-color: #344b6e;
+}
+
+.dark .event-detail-organizer-name {
+  color: #d0e0f7;
+}
+
+.dark .event-detail-organizer-company {
+  color: #a4c2f4;
+}
+
+.dark .clickable-venue {
+  color: #5a94e5;
+}
+
+.dark .clickable-venue:hover {
+  color: #7cacf0;
+}

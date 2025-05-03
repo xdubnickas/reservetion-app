@@ -179,8 +179,7 @@ const EventDetailPage = () => {
                   <div className="event-detail-info-icon"><FaClock /></div>
                   <div className="event-detail-info-content">
                     <span className="event-detail-info-time">
-                      {startTime.format('HH:mm')} - {endTime ? endTime.format('HH:mm') : 'Not specified'} 
-                      {event.duration ? ` (${duration})` : ''}
+                      {startTime.format('HH:mm')} - {endTime ? endTime.format('HH:mm') : 'Not specified'}
                     </span>
                   </div>
                 </div>

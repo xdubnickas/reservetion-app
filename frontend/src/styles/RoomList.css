@@ -1,0 +1,207 @@
+/* Room section styling */
+.rooms-section {
+    padding: 1rem 0.5rem;
+  }
+  
+  /* Table styling */
+  .rooms-table {
+    color: var(--bs-body-color);
+    border-color: var(--bs-border-color);
+  }
+  
+  .rooms-table thead {
+    background-color: rgba(var(--bs-primary-rgb), 0.05);
+  }
+  
+  .rooms-table th,
+  .rooms-table td {
+    padding: 0.75rem;
+    border-color: var(--bs-border-color);
+  }
+  
+  .rooms-table tbody tr {
+    transition: background-color 0.2s ease;
+  }
+  
+  .rooms-table tbody tr:hover {
+    background-color: rgba(var(--bs-primary-rgb), 0.05);
+  }
+  
+  /* Button styling */
+  .add-room-button {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0.5rem auto;
+    transition: all 0.3s ease;
+    background-color: rgba(var(--bs-success-rgb), 0.1);
+    border-color: var(--bs-success);
+    color: var(--bs-success);
+  }
+  
+  .add-room-button:hover {
+    background-color: rgba(var(--bs-success-rgb), 0.2);
+    transform: scale(1.1);
+  }
+  
+  .room-edit-btn,
+  .room-delete-btn {
+    font-weight: 500;
+    transition: transform 0.2s ease;
+  }
+  
+  .room-edit-btn:hover,
+  .room-delete-btn:hover {
+    transform: translateY(-2px);
+  }
+  
+  /* Modal styling */
+  .room-modal .modal-content {
+    background-color: var(--bs-body-bg);
+    color: var(--bs-body-color);
+    border-radius: 10px;
+    border: 1px solid var(--bs-border-color);
+  }
+  
+  .room-modal .modal-header {
+    border-bottom-color: var(--bs-border-color);
+    padding: 1rem 1.5rem;
+  }
+  
+  .room-modal .modal-body {
+    padding: 1.5rem;
+  }
+  
+  .room-modal .modal-title {
+    color: var(--bs-body-color);
+    font-weight: 600;
+  }
+  
+  /* Form controls */
+  .room-form-control {
+    border-color: var(--bs-border-color);
+    background-color: var(--bs-body-bg);
+    color: var(--bs-body-color);
+    border-radius: 8px;
+    padding: 0.5rem 0.75rem;
+  }
+  
+  .room-form-control:focus {
+    border-color: var(--bs-primary);
+    box-shadow: 0 0 0 0.25rem rgba(var(--bs-primary-rgb), 0.15);
+    background-color: var(--bs-body-bg);
+    color: var(--bs-body-color);
+  }
+  
+  /* Button styles */
+  .room-cancel-btn {
+    border-color: var(--bs-border-color);
+    color: var(--bs-body-color);
+  }
+  
+  .room-cancel-btn:hover {
+    background-color: rgba(var(--bs-secondary-rgb), 0.1);
+    border-color: var(--bs-secondary);
+  }
+  
+  .room-save-btn {
+    background-color: var(--bs-primary);
+    border-color: var(--bs-primary);
+  }
+  
+  /* Dark Mode Styles */
+  .dark .rooms-table {
+    color: #e6edf7;
+  }
+  
+  .dark .rooms-table thead {
+    background-color: rgba(90, 148, 229, 0.1);
+  }
+  
+  .dark .rooms-table th,
+  .dark .rooms-table td {
+    border-color: #344b6e;
+  }
+  
+  .dark .rooms-table tbody tr:hover {
+    background-color: rgba(90, 148, 229, 0.1);
+  }
+  
+  .dark .room-edit-btn {
+    color: #5a94e5;
+  }
+  
+  .dark .room-delete-btn {
+    color: #f8a0a8 !important;
+  }
+  
+  .dark .add-room-button {
+    background-color: rgba(77, 189, 116, 0.1);
+    border-color: #4dbd74;
+    color: #4dbd74;
+  }
+  
+  .dark .add-room-button:hover {
+    background-color: rgba(77, 189, 116, 0.2);
+  }
+  
+  .dark .room-modal .modal-content {
+    background-color: #1e2f4d;
+    border-color: #2a3c5a;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+  }
+  
+  .dark .room-modal .modal-header {
+    border-bottom-color: #344b6e;
+  }
+  
+  .dark .room-modal .modal-title {
+    color: #e6edf7;
+  }
+  
+  .dark .room-form-control {
+    background-color: #2a3c5a;
+    border-color: #344b6e;
+    color: #e6edf7;
+  }
+  
+  .dark .room-form-control:focus {
+    border-color: #5a94e5;
+    background-color: #2a3c5a;
+    color: #e6edf7;
+    box-shadow: 0 0 0 0.25rem rgba(90, 148, 229, 0.2);
+  }
+  
+  .dark .room-cancel-btn {
+    color: #a4c2f4;
+    border-color: #344b6e;
+  }
+  
+  .dark .room-cancel-btn:hover {
+    background-color: rgba(164, 194, 244, 0.1);
+    border-color: #5a94e5;
+    color: #e6edf7;
+  }
+  
+  .dark .room-save-btn {
+    background-color: #3a7bd5;
+    border-color: #3a7bd5;
+  }
+  
+  .dark .room-save-btn:hover {
+    background-color: #5a94e5;
+    border-color: #5a94e5;
+  }
+  
+  .dark .form-label {
+    color: #d0e0f7;
+  }
+  
+  .dark .modal-header .btn-close {
+    filter: invert(1) grayscale(100%) brightness(200%);
+  }
+  

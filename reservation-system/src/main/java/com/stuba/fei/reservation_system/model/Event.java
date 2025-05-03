@@ -79,7 +79,13 @@ public class Event {
             reservations.stream()
                 .filter(r -> r.getStatus() == Reservation.ReservationStatus.CONFIRMED)
                 .count() : 0;
-                
+
+        System.out.println("Now: " + now);
+        System.out.println("Event starts: " + eventStart);
+        System.out.println("Confirmed reservations: " + confirmedReservations);
+        System.out.println("Max capacity: " + maxCapacity);
+
+
         if (confirmedReservations >= maxCapacity) {
             this.status = EventStatus.FULL;
             return;
@@ -91,8 +97,10 @@ public class Event {
             return;
         }
 
-        // Inak ostane ACTIVE
-        this.status = EventStatus.ACTIVE;
+        if (this.status != EventStatus.INACTIVE) {
+            this.status = EventStatus.ACTIVE;
+        }
+
     }
 
 }

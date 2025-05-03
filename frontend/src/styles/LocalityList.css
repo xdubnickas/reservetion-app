@@ -1,12 +1,21 @@
 .locality-card {
     background-color: var(--bs-body-bg);
     color: var(--bs-body-color);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    border: 1px solid var(--bs-border-color);
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.locality-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
 }
 
 .locality-card .card-title {
     color: var(--bs-body-color);
     font-size: 1.1rem;
-    font-weight: 500;
+    font-weight: 600;
     margin-bottom: 1rem;
     display: flex;
     align-items: center;
@@ -19,6 +28,15 @@
 
 .locality-card .card-text {
     color: var(--bs-body-color);
+    line-height: 1.6;
+}
+
+/* Event counts badges */
+.event-counts-section .badge {
+    padding: 0.5rem 0.75rem;
+    font-weight: 500;
+    border-radius: 20px;
+    font-size: 0.85rem;
 }
 
 /* Enhanced Modal Styling */
@@ -30,7 +48,6 @@
     border: none;
 }
 
-
 .locality-modal-dialog .modal-content {
     height: 100%;
     display: flex;
@@ -41,7 +58,6 @@
 .llisbuttons {
     padding-top: 5.5rem;
 }
-
 
 .locality-modal .modal-header {
     border-bottom-color: var(--bs-border-color);
@@ -129,7 +145,7 @@
     padding-bottom: 2rem;
 }
 
-.input-group{
+.input-group {
     flex-wrap: nowrap;
 }
 
@@ -150,6 +166,16 @@
     display: flex;
     align-items: center;
     justify-content: center;
+    background-color: var(--bs-primary);
+    color: #fff;
+    box-shadow: 0 4px 10px rgba(var(--bs-primary-rgb), 0.3);
+    border: none;
+    transition: all 0.3s ease;
+}
+
+.add-locality-bottom .btn:hover {
+    transform: translateY(-3px) scale(1.05);
+    box-shadow: 0 6px 15px rgba(var(--bs-primary-rgb), 0.4);
 }
 
 .rooms-section {
@@ -243,4 +269,185 @@
     color: var(--bs-gray-600);
     text-align: center;
     z-index: 1050;
+}
+
+/* ===== DARK MODE STYLES ===== */
+.dark .locality-card {
+    background-color: #1e2f4d;
+    border-color: #2a3c5a;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+.dark .locality-card:hover {
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+}
+
+.dark .locality-card .card-title {
+    color: #e6edf7;
+}
+
+.dark .locality-card .card-title:hover {
+    color: #5a94e5;
+}
+
+.dark .locality-card .card-text {
+    color: #c5d5eb;
+}
+
+.dark .locality-card .card-text strong {
+    color: #d0e0f7;
+}
+
+/* Event counts badges in dark mode */
+.dark .event-counts-section .badge {
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.dark .badge.bg-info {
+    background-color: #2b6cb0 !important;
+}
+
+.dark .badge.bg-secondary {
+    background-color: #4a5568 !important;
+}
+
+/* Rooms header in dark mode */
+.dark .rooms-header {
+    border-color: #2a3c5a;
+}
+
+.dark .rooms-header:hover {
+    background-color: rgba(90, 148, 229, 0.1);
+    border-color: rgba(90, 148, 229, 0.2);
+}
+
+.dark .rooms-header .text-secondary {
+    color: #a4c2f4 !important;
+}
+
+.dark .rooms-header:hover .text-secondary {
+    color: #5a94e5 !important;
+}
+
+/* Buttons in dark mode */
+.dark .btn-outline-primary {
+    color: #5a94e5;
+    border-color: #5a94e5;
+}
+
+.dark .btn-outline-primary:hover {
+    background-color: #2a3c5a;
+    color: #ffffff;
+    border-color: #5a94e5;
+}
+
+.dark .btn-outline-danger {
+    color: #f8a0a8;
+    border-color: #f8a0a8;
+}
+
+.dark .btn-outline-danger:hover {
+    background-color: rgba(220, 53, 69, 0.2);
+    color: #ffffff;
+    border-color: #f8a0a8;
+}
+
+/* Modal in dark mode */
+.dark .locality-modal .modal-content {
+    background-color: #1e2f4d;
+    border: 1px solid #2a3c5a;
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.3);
+}
+
+.dark .locality-modal .modal-header {
+    border-bottom-color: #344b6e;
+}
+
+.dark .locality-modal .modal-title {
+    color: #e6edf7;
+}
+
+.dark .modal-title-icon {
+    background-color: rgba(90, 148, 229, 0.1);
+    color: #5a94e5;
+}
+
+.dark .locality-modal .form-label {
+    color: #d0e0f7;
+}
+
+.dark .locality-modal .form-text {
+    color: #a4c2f4 !important;
+}
+
+.dark .locality-modal .form-control-modern,
+.dark .locality-modal .form-select {
+    background-color: #2a3c5a;
+    border-color: #344b6e;
+    color: #e6edf7;
+}
+
+.dark .locality-modal .form-control-modern:focus,
+.dark .locality-modal .form-select:focus {
+    border-color: #5a94e5;
+    box-shadow: 0 0 0 0.25rem rgba(90, 148, 229, 0.15);
+}
+
+.dark .locality-modal .input-group-text {
+    background-color: rgba(90, 148, 229, 0.08);
+    border-color: #344b6e;
+    color: #5a94e5;
+}
+
+.dark .locality-modal .btn-outline-secondary {
+    color: #a4c2f4;
+    border-color: #344b6e;
+}
+
+.dark .locality-modal .btn-outline-secondary:hover {
+    background-color: #2a3c5a;
+    color: #e6edf7;
+}
+
+.dark .locality-modal .save-button {
+    background-color: #3a7bd5;
+    border-color: #3a7bd5;
+}
+
+.dark .locality-modal .save-button:hover {
+    background-color: #5a94e5;
+    border-color: #5a94e5;
+    box-shadow: 0 4px 8px rgba(90, 148, 229, 0.25);
+}
+
+/* Add locality button in dark mode */
+.dark .add-locality-bottom .btn {
+    background-color: #3a7bd5;
+    box-shadow: 0 4px 10px rgba(58, 123, 213, 0.3);
+}
+
+.dark .add-locality-bottom .btn:hover {
+    background-color: #5a94e5;
+    box-shadow: 0 6px 15px rgba(58, 123, 213, 0.4);
+}
+
+/* City suggestions in dark mode */
+.dark .city-suggestions {
+    background-color: #2a3c5a;
+    border: 1px solid #344b6e;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.25);
+}
+
+.dark .city-suggestion-item {
+    color: #e6edf7;
+}
+
+.dark .city-suggestion-item:hover {
+    background-color: #344b6e;
+}
+
+.dark .no-suggestions {
+    background-color: #2a3c5a;
+    border-color: #344b6e;
+    color: #a4c2f4;
 }

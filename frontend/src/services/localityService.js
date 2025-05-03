@@ -81,6 +81,11 @@ export const localityService = {
     return uniqueCities.sort();
   },
 
+  getAllSpaceRenters: async () => {
+    const response = await authenticatedRequest('GET', false, `${API_URL}/space-renters`);
+    return response.data;
+  },
+
   getEventCountsByLocality: async (id) => {
     const response = await authenticatedRequest('GET', true, `${API_URL}/localities/${id}/event-counts`);
     return response.data;
